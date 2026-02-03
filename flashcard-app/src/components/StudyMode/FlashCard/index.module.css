@@ -1,0 +1,102 @@
+@reference "../../../index.css";
+
+.container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	align-self: stretch;
+	border-radius: var(--radius-16);
+	border-top: 1px solid var(--color-neutral-900);
+	border-right: 3px solid var(--color-neutral-900);
+	border-bottom: 3px solid var(--color-neutral-900);
+	border-left: 1px solid var(--color-neutral-900);
+	background: var(--color-neutral-0);
+}
+.header {
+	display: flex;
+	padding: var(--spacing-150);
+	flex-direction: column;
+	align-items: flex-start;
+	gap: var(--spacing-200);
+	align-self: stretch;
+	@apply md:p-250;
+}
+.flashcard_controls {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	align-self: stretch;
+}
+.filters {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+	gap: var(--spacing-125);
+	@apply md:flex-row md:gap-200 md:items-center;
+}
+.divider {
+	height: 0.0625rem;
+	align-self: stretch;
+	background-color: var(--color-neutral-900);
+}
+.flashcard_container {
+	display: flex;
+	padding: var(--spacing-300) var(--spacing-200);
+	flex-direction: column;
+	align-items: center;
+	gap: var(--spacing-250);
+	align-self: stretch;
+	transition: 200ms ease;
+	@apply md:p-250;
+}
+
+.hide_filter {
+	cursor: pointer;
+	display: flex;
+	padding: 0;
+	align-items: center;
+	height: 1.875rem;
+	gap: var(--spacing-100);
+	color: var(--color-neutral-900);
+	@apply text-preset-4-md;
+}
+.actions {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: var(--spacing-125);
+	align-self: stretch;
+	@apply md:gap-250 md:flex-row md:justify-center;
+}
+
+.nav_controls {
+	display: flex;
+	padding: var(--spacing-200);
+	justify-content: space-between;
+	align-items: center;
+	align-self: stretch;
+	@apply md:p-250;
+}
+.nav_controls span {
+	color: var(--color-neutral-600);
+	@apply text-preset-5;
+}
+.nav_button {
+	display: flex;
+	padding: var(--spacing-150);
+	justify-content: center;
+	align-items: center;
+	gap: var(--spacing-100);
+	border-radius: var(--radius-full);
+	border: 1px solid var(--color-neutral-900);
+	background: var(--color-neutral-0);
+	@apply md:px-200;
+}
+.nav_button span {
+	color: var(--color-neutral-900);
+	@apply text-preset-4-md;
+}
+.nav_button:hover {
+	background-color: var(--color-neutral-100);
+}
