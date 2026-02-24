@@ -16,7 +16,7 @@ export const FlashCard = () => {
 				<div className={styles.flashcard_controls}>
 					<div className={styles.filters}>
 						<Dropdown />
-						<Checkbox label="Hide Mastered" checked={false} />
+						<Checkbox label="Hide Mastered" />
 					</div>
 					{/* TODO: ADD SHUFFLE FUNCTIONALITY */}
 					<Button variant="border" onClick={() => ""}>
