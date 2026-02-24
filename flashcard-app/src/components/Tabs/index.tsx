@@ -1,26 +1,23 @@
-import { useState } from "react";
+import { NavLink } from "react-router";
+import classes from "./index.module.css";
 
-import styles from "./index.module.css";
-import StudyMode from "../../pages/StudyMode";
 export const Tabs = () => {
-	// Dictonary of tabs and their pages
-	const tabs = [
-		{ id: "studyMode", label: "Study Mode", content: <StudyMode /> },
-		{ id: "allCards", label: "All Cards", content: "AllCardsPage" },
+	const routes = [
+		{ path: "/", name: "Study Mode" },
+		{ path: "/allCards", name: "All Cards" },
 	];
-	// First tab is the default active tab
-	const [activeTab, setActiveTab] = useState(tabs[0].id);
 	return (
-		<div className={styles.tabBase}>
-			{tabs.map((tab) => (
-				<button
-					key={tab.id}
-					onClick={() => setActiveTab(tab.id)}
-					className={activeTab === tab.id ? `${styles.activeTab}` : ""}
+		<nav className={classes.tabBase}>
+			{routes.map((item, index) => (
+				<NavLink
+					key={index}
+					to={item.path}
+					className={({ isActive }) => (isActive ? `${classes.active}` : "")}
+					end={item.path === "/"}
 				>
-					{tab.label}
-				</button>
+					{item.name}
+				</NavLink>
 			))}
-		</div>
+		</nav>
 	);
 };

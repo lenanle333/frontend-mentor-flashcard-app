@@ -1,14 +1,13 @@
 import "./App.css";
-// import Playground from "../pages/Playground.tsx";
-import StudyMode from "../pages/StudyMode.tsx";
-import AllCards from "../pages/AllCards.tsx";
-
+import { NavBar } from "../components/NavBar";
+import { FlashCard } from "../components/StudyMode/FlashCard";
+import { Statistics } from "../components/StudyMode/Statistics";
 function App() {
 	return (
-		<div>
-			{/* <Playground /> */}
-			<StudyMode />
-			<AllCards />
+		<div className="screen-padding">
+			<NavBar />
+			<FlashCard />
+			<Statistics />
 		</div>
 	);
 }
