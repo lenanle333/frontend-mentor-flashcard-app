@@ -17,7 +17,7 @@ export default function AllCards() {
 					<div className="flex flex-col justify-center items-start gap-125 flex-[1_0_0] md:flex-row md:gap-250 md:items-center md:justify-start">
 						<Dropdown />
 						{/* Hide Mastered Checkbox */}
-						<Checkbox label="Hide Mastered" checked={false} />
+						<Checkbox label="Hide Mastered" />
 					</div>
 					<Button variant="border">
 						<img src={shuffleIcon} alt="shuffle icon" />
