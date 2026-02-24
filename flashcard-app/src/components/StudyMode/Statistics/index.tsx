@@ -1,4 +1,3 @@
-import React from "react";
 import layers_icon from "../../../assets/images/icon-stats-total.svg";
 import brain_icon from "../../../assets/images/icon-stats-mastered.svg";
 import book_icon from "../../../assets/images/icon-stats-in-progress.svg";
