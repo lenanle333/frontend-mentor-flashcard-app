@@ -36,8 +36,8 @@
 	display: flex;
 	padding: var(--spacing-100) var(--spacing-200);
 	align-items: center;
-	gap: var(--spacing-100);
 	align-self: stretch;
+	gap: var(--spacing-50);
 	border-radius: var(--radius-8);
 	background: var(--color-neutral-0);
 	border-bottom: 1px var(--color-neutral-900) solid;
@@ -55,6 +55,7 @@
 	border-bottom: none;
 	border-radius: var(--radius-8);
 }
-.dropdown_item span {
+.count {
 	color: var(--color-neutral-600);
+	@apply text-preset-5;
 }

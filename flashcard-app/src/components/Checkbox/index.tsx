@@ -3,8 +3,9 @@ import styles from "./index.module.css";
 interface CheckboxProps {
 	label: string;
 	checked?: boolean;
+	className?: string;
 }
-export const Checkbox: React.FC<CheckboxProps> = ({ label, checked = false }) => {
+export const Checkbox: React.FC<CheckboxProps> = ({ label, checked = false, className }) => {
 	const [isChecked, setIsChecked] = useState<boolean>(checked);
 
 	const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -19,7 +20,7 @@ export const Checkbox: React.FC<CheckboxProps> = ({ label, checked = false }) =>
 				onChange={handleChange}
 			/>
 
-			<span>{label}</span>
+			<span className={className}>{label}</span>
 		</label>
 	);
 };
