@@ -1,13 +1,11 @@
-import { useState } from "react";
 import { NavBar } from "../components/NavBar";
 import NewCard from "../components/NewCard";
 import Button from "../components/Button";
+import { Checkbox } from "../components/Checkbox";
 import shuffleIcon from "../assets/images/icon-shuffle.svg";
-import checkIcon from "../assets/images/icon-check.svg";
 import { Dropdown } from "../components/Dropdown";
 import FlashCard from "../components/FlashCard";
 export default function AllCards() {
-	const [isHidden, setIsHidden] = useState(false);
 	return (
 		<div className="screen-padding">
 			<NavBar />
@@ -19,12 +17,7 @@ export default function AllCards() {
 					<div className="flex flex-col justify-center items-start gap-125 flex-[1_0_0] md:flex-row md:gap-250 md:items-center md:justify-start">
 						<Dropdown />
 						{/* Hide Mastered Checkbox */}
-						<div className="hide-filter" onClick={() => setIsHidden(!isHidden)}>
-							<button className={isHidden === true ? "checked" : "checkbox"}>
-								<img className={isHidden === true ? "block" : "hidden"} src={checkIcon} alt="hide mastered card" />
-							</button>
-							Hide Mastered
-						</div>
+						<Checkbox label="Hide Mastered" checked={false} />
 					</div>
 					<Button variant="border">
 						<img src={shuffleIcon} alt="shuffle icon" />
