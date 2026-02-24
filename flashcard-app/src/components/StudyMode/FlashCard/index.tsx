@@ -1,6 +1,6 @@
 import { Dropdown } from "../../Dropdown";
 import Button from "../../Button";
-import check_icon from "../../../assets/images/icon-check.svg";
+import { Checkbox } from "../../Checkbox";
 import circle_check from "../../../assets/images/icon-circle-check.svg";
 import shuffle_icon from "../../../assets/images/icon-shuffle.svg";
 import reset_icon from "../../../assets/images/icon-reset.svg";
@@ -8,9 +8,7 @@ import prev_icon from "../../../assets/images/icon-chevron-left.svg";
 import next_icon from "../../../assets/images/icon-chevron-right.svg";
 import { ActiveCard } from "../ActiveCard";
 import styles from "./index.module.css";
-import { useState } from "react";
 export const FlashCard = () => {
-	const [isHidden, setIsHidden] = useState(false);
 	return (
 		<div className={styles.container}>
 			{/* Header */}
@@ -18,12 +16,7 @@ export const FlashCard = () => {
 				<div className={styles.flashcard_controls}>
 					<div className={styles.filters}>
 						<Dropdown />
-						<div className="hide-filter" onClick={() => setIsHidden(!isHidden)}>
-							<button className={isHidden === true ? "checked" : "checkbox"}>
-								<img className={isHidden === true ? "block" : "hidden"} src={check_icon} alt="hide mastered card" />
-							</button>
-							Hide Mastered
-						</div>
+						<Checkbox label="Hide Mastered" checked={false} />
 					</div>
 					{/* TODO: ADD SHUFFLE FUNCTIONALITY */}
 					<Button variant="border" onClick={() => ""}>
