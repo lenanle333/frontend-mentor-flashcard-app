@@ -73,10 +73,10 @@ button {
 }
 
 @utility text-preset-1 {
-	@apply text-2xl font-bold leading-[1.8rem] md:leading-[2.4rem] lg:leading-12 md:text-[2rem] lg:text-[2.5rem];
+	@apply text-[1.5rem] font-bold leading-[1.8rem] md:leading-[2.4rem] lg:leading-12 md:text-[2rem] lg:text-[2.5rem];
 }
 @utility text-preset-2 {
-	@apply text-2xl font-semibold leading-[1.8rem];
+	@apply text-[1.5rem] font-semibold leading-[1.8rem];
 }
 @utility text-preset-3 {
 	@apply text-xl font-semibold leading-[1.5rem];
