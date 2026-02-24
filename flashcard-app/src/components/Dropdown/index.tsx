@@ -29,7 +29,7 @@ export const Dropdown = () => {
 			<div className={dropdownVisibility === true ? `${styles.dropdown_menu} block` : "hidden"}>
 				{Object.keys(counts).map((category) => (
 					<div key={category} className={styles.dropdown_item} onClick={() => setCategory(category)}>
-						<button className={selectedCategory.includes(category) ? `${styles.checked}` : `${styles.checkbox}`}>
+						<button className={selectedCategory.includes(category) ? `checked` : `checkbox`}>
 							<img className={selectedCategory.includes(category) ? "block" : "hidden"} src={check} alt="" />
 						</button>
 						<div>

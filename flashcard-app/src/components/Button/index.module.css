@@ -10,6 +10,7 @@
 	border: 1px solid var(--color-neutral-900);
 	box-shadow: 2px 2px 0 0 var(--color-neutral-900);
 	height: 2.6875rem;
+	@apply text-preset-4-md text-neutral-900;
 }
 .custom_button:hover {
 	box-shadow: 4px 4px 0 0 var(--color-neutral-900);
@@ -21,14 +22,15 @@
 	background: var(--color-yellow-500);
 }
 .secondary {
-	background: var(--colors-neutral-0, #fff);
+	background: var(--color-neutral-0);
 }
 
 .border {
 	box-shadow: none;
 	padding: var(--spacing-150) var(--spacing-200);
+	background: var(--color-neutral-0);
 }
 .border:hover {
-	background: var(--colors-neutral-100, #f7f3f0);
+	background: var(--color-neutral-100);
 	box-shadow: none;
 }

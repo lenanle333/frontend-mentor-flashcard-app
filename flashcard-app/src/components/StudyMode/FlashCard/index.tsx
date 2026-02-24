@@ -18,7 +18,7 @@ export const FlashCard = () => {
 				<div className={styles.flashcard_controls}>
 					<div className={styles.filters}>
 						<Dropdown />
-						<div className={styles.hide_filter} onClick={() => setIsHidden(!isHidden)}>
+						<div className="hide-filter" onClick={() => setIsHidden(!isHidden)}>
 							<button className={isHidden === true ? "checked" : "checkbox"}>
 								<img className={isHidden === true ? "block" : "hidden"} src={check_icon} alt="hide mastered card" />
 							</button>

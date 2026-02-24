@@ -51,16 +51,6 @@
 	@apply md:p-250;
 }
 
-.hide_filter {
-	cursor: pointer;
-	display: flex;
-	padding: 0;
-	align-items: center;
-	height: 1.875rem;
-	gap: var(--spacing-100);
-	color: var(--color-neutral-900);
-	@apply text-preset-4-md;
-}
 .actions {
 	display: flex;
 	flex-direction: column;

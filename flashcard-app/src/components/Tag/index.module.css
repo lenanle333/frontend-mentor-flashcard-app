@@ -1,0 +1,14 @@
+@reference "../../index.css";
+
+.container {
+	display: flex;
+	padding: var(--spacing-75) var(--spacing-150);
+	justify-content: center;
+	align-items: center;
+	gap: 0.625rem;
+	border-radius: var(--radius-full);
+	border: 1px solid var(--color-neutral-900);
+	background: var(--color-neutral-0);
+	box-shadow: 1px 1px 0 0 #000;
+	@apply text-preset-6 text-neutral-900;
+}
