@@ -64,7 +64,6 @@ body {
 	display: flex;
 	place-items: center;
 	min-width: 375px;
-	min-height: 100vh;
 	background-color: var(--color-neutral-100);
 	color: var(--color-neutral-900);
 }
@@ -101,7 +100,7 @@ button {
 }
 
 @utility screen-padding {
-	@apply gap-300 p-200 pb-500 md:px-400 md:pt-250 md:pb-800 lg:px-[100px] lg:py-300 lg:gap-400 min-w-[23.4375rem] md:min-w-[48rem] lg:min-w-[90rem];
+	@apply flex flex-col gap-300 p-200 pb-500 md:px-400 md:pt-250 md:pb-800 lg:px-[100px] lg:py-300 lg:gap-400 min-w-[23.4375rem] md:min-w-[48rem] lg:min-w-[90rem];
 }
 
 .card-style {

@@ -9,7 +9,7 @@ import FlashCard from "../components/FlashCard";
 export default function AllCards() {
 	const [isHidden, setIsHidden] = useState(false);
 	return (
-		<div className="items-center flex flex-col screen-padding gap-300 lg:gap-400 lg:items-start">
+		<div className="screen-padding">
 			<NavBar />
 			<div className="flex flex-col self-stretch gap-300 lg:gap-400 lg:items-start">
 				<NewCard />
