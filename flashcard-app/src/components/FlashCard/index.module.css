@@ -6,12 +6,12 @@
 	height: 14.875rem;
 	flex-direction: column;
 	align-items: flex-start;
+	@apply lg:w-[24.8125rem];
 }
 
 .question {
 	display: flex;
 	padding: var(--spacing-200);
-	justify-content: center;
 	align-items: center;
 	gap: var(--spacing-125);
 	align-self: stretch;
