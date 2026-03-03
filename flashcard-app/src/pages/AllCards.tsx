@@ -27,6 +27,8 @@ export default function AllCards() {
 				{/* Flashcards Container */}
 				<div className="flex items-start content-start gap-250 self-stretch flex-wrap">
 					<FlashCard />
+					<FlashCard />
+					<FlashCard />
 				</div>
 			</div>
 		</div>

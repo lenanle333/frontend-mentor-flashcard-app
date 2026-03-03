@@ -121,30 +121,3 @@ button {
 	color: var(--color-neutral-900);
 	@apply text-preset-4-md;
 }
-.checkbox {
-	cursor: pointer;
-	width: 1rem;
-	height: 1rem;
-	border-radius: var(--radius-4);
-	border: 1px solid var(--color-neutral-900);
-	background: var(--color-neutral-0);
-}
-
-.checked {
-	cursor: pointer;
-	display: flex;
-	width: 1rem;
-	height: 1rem;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	gap: 0.625rem;
-	border-radius: var(--radius-4);
-	border: 1px solid var(--color-neutral-900);
-	background: var(--color-yellow-500);
-}
-.checkbox:hover,
-.checked:hover {
-	box-shadow: 1px 1px 0 0 var(--color-neutral-900);
-	transition: ease-out 200ms;
-}

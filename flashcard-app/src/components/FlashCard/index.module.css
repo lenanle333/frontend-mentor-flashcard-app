@@ -6,6 +6,7 @@
 	height: 14.875rem;
 	flex-direction: column;
 	align-items: flex-start;
+	@apply lg:w-[24.8125rem];
 }
 
 .question {
