@@ -8,7 +8,7 @@ export const Statistics = () => {
 		<div className={styles.container}>
 			<h1 className="text-preset-2">Study Statistics</h1>
 			<div className={styles.content}>
-				<div className={styles.total_cards}>
+				<div className={styles.card}>
 					<div className={styles.info_container}>
 						<span>Total cards</span>
 						<span>40</span>
@@ -17,7 +17,7 @@ export const Statistics = () => {
 						<img className="size-6" src={layers_icon} alt="total cards icon" />
 					</div>
 				</div>
-				<div className={styles.total_cards}>
+				<div className={styles.card}>
 					<div className={styles.info_container}>
 						<span>Mastered</span>
 						<span>11</span>
@@ -26,7 +26,7 @@ export const Statistics = () => {
 						<img className="size-6" src={brain_icon} alt="total cards icon" />
 					</div>
 				</div>
-				<div className={styles.total_cards}>
+				<div className={styles.card}>
 					<div className={styles.info_container}>
 						<span>In Progress</span>
 						<span>21</span>
@@ -35,7 +35,7 @@ export const Statistics = () => {
 						<img className="size-6" src={book_icon} alt="total cards icon" />
 					</div>
 				</div>
-				<div className={styles.total_cards}>
+				<div className={styles.card}>
 					<div className={styles.info_container}>
 						<span>Not Started</span>
 						<span>8</span>
