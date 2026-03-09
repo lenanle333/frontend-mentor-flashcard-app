@@ -28,7 +28,9 @@ export const FlashCard = () => {
 			<div className={styles.divider} />
 			{/* FlashCard Section */}
 			<div className={styles.flashcard_container}>
-				<ActiveCard />
+				<div className="w-full flex-center">
+					<ActiveCard />
+				</div>
 				<div className={styles.actions}>
 					<Button variant="primary" className="w-full md:w-auto">
 						<img src={circle_check} alt="I know this" />I Know This

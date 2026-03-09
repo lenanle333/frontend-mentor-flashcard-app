@@ -4,6 +4,7 @@
 	position: relative;
 	display: flex;
 	height: 22.5rem;
+	width: clamp(19.4rem, 50vw, 48.5rem);
 	padding: var(--spacing-250) var(--spacing-200);
 	flex-direction: column;
 	align-items: center;
@@ -13,9 +14,8 @@
 	border: 2px solid var(--color-neutral-900);
 	box-shadow: 2px 2px 0 0 var(--color-neutral-900);
 	background: var(--color-pink-400);
-	max-width: 48.5rem;
-	width: 100%;
-	@apply md:p-300 lg:w-194;
+	@apply md:p-300;
+	/* lg:w-194 */
 }
 .flashcard_bg {
 	background: url("../../../assets/images/pattern-flashcard-bg.svg") no-repeat top;

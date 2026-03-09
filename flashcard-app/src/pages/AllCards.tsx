@@ -9,7 +9,7 @@ export default function AllCards() {
 	return (
 		<div className="screen-padding">
 			<NavBar />
-			<div className="flex flex-col self-stretch gap-300 lg:gap-400 lg:items-start">
+			<div className="flex flex-col self-stretch gap-300 lg:gap-400 ">
 				<NewCard />
 				{/* Flashcard Controls */}
 				<div className="flex pt-200 justify-between items-start self-stretch md:items-center">

@@ -4,12 +4,12 @@ import { FlashCard } from "../components/StudyMode/FlashCard";
 import { Statistics } from "../components/StudyMode/Statistics";
 function App() {
 	return (
-		<div className="screen-padding lg:not(first:flex-row))">
+		<div className="screen-padding">
 			<NavBar />
-			{/* <div className="flex flex-col gap-300 lg:flex-row lg:gap-400"> */}
-			<FlashCard />
-			<Statistics />
-			{/* </div> */}
+			<div className="flex flex-col gap-y-300 lg:flex-row lg:justify-between lg:gap-y-400">
+				<FlashCard />
+				<Statistics />
+			</div>
 		</div>
 	);
 }

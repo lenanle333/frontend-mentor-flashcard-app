@@ -17,12 +17,11 @@
 	@apply md:h-86.25 md:px-250 md:py-200 lg:h-158.5 lg:p-300;
 }
 .content {
-	display: flex;
-	flex-direction: column;
+	display: grid;
 	align-items: flex-start;
-	gap: var(--spacing-200);
 	align-self: stretch;
-	@apply md:content-start md:flex-wrap md:gap-250 md:flex-row ;
+	gap: var(--spacing-200);
+	@apply md:content-start md:flex-wrap md:flex-row md:gap-250 md:grid-cols-2 lg:grid-cols-1;
 }
 .card {
 	display: flex;

@@ -1,6 +1,6 @@
 /* Global styles */
 @import "tailwindcss";
-@tailwind utilities;
+
 @theme {
 	--font-family: "Poppins", sans-serif;
 
@@ -22,6 +22,7 @@
 	--color-pink-700: #e11966;
 	--color-pink-500: #f073a3;
 	--color-pink-400: #fc8ae5;
+	
 
 	--color-text-primary: #02012c;
 
@@ -101,6 +102,10 @@ button {
 
 @utility screen-padding {
 	@apply flex flex-col gap-300 p-200 pb-500 md:px-400 md:pt-250 md:pb-800 lg:px-[100px] lg:py-300 lg:gap-400 min-w-[23.4375rem] md:min-w-[48rem] lg:min-w-[90rem];
+}
+@utility flex-center{
+	@apply flex content-center justify-center; 
+
 }
 
 .card-style {
