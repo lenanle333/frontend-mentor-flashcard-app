@@ -1,22 +1,6 @@
-@reference "../../index.css";
+@reference "../../../index.css";
 
 .container {
-	display: flex;
-	padding: var(--spacing-250);
-	flex-direction: column;
-	align-items: center;
-	gap: var(--spacing-300);
-	align-self: stretch;
-	@apply md:p-300 lg:p-400;
-}
-.form {
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
-	gap: var(--spacing-200);
-	align-self: stretch;
-}
-.inputContainer {
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;

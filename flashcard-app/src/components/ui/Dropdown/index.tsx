@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
-import flashcard_data from "../../utils/data.json";
-import { CountCategories } from "../../utils/CountCategories";
-import dropdown_icon from "../../assets/images/icon-chevron-down.svg";
+import flashcard_data from "../../../utils/data.json";
+import { CountCategories } from "../../../utils/CountCategories";
+import dropdown_icon from "../../../assets/images/icon-chevron-down.svg";
 import { Checkbox } from "../Checkbox";
 import styles from "./index.module.css";
 export const Dropdown = () => {

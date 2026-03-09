@@ -1,15 +1,17 @@
 import "./App.css";
 import { NavBar } from "../components/NavBar";
-import { FlashCard } from "../components/StudyMode/FlashCard";
-import { Statistics } from "../components/StudyMode/Statistics";
+import { FlashcardSection } from "../components/StudyMode/FlashcardSection";
+import { StatisticsSection } from "../components/StudyMode/StatisticsSection";
+// import Playground from "../pages/Playground";
 function App() {
 	return (
 		<div className="screen-padding">
 			<NavBar />
 			<div className="flex flex-col gap-y-300 lg:flex-row lg:justify-between lg:gap-y-400">
-				<FlashCard />
-				<Statistics />
+				<FlashcardSection />
+				<StatisticsSection />
 			</div>
+			{/* <Playground /> */}
 		</div>
 	);
 }

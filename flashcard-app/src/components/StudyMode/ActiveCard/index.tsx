@@ -14,16 +14,8 @@ export const ActiveCard = () => {
 				<div className={styles.question}>What does HTML stand for?</div>
 				<div className={styles.hint}>Click to reveal answer</div>
 			</div>
-			<img
-				className="size-6 absolute right-7.5 top-10"
-				src={blue_star}
-				alt="blue star"
-			/>
-			<img
-				className="size-8 absolute left-7 bottom-13"
-				src={yellow_star}
-				alt="yellow star"
-			/>
+			<img className="size-6 absolute right-7.5 top-10" src={blue_star} alt="blue star" />
+			<img className="size-8 absolute left-7 bottom-13" src={yellow_star} alt="yellow star" />
 			{/* Progress Bar */}
 			<ProgressBar />
 		</div>

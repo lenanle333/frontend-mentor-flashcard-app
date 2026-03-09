@@ -1,16 +1,16 @@
 import { NavBar } from "../components/NavBar";
-import NewCard from "../components/NewCard";
-import Button from "../components/Button";
-import { Checkbox } from "../components/Checkbox";
+import FlashcardForm from "../components/forms/FlashcardForm";
+import Button from "../components/ui/Button";
+import { Checkbox } from "../components/ui/Checkbox";
 import shuffleIcon from "../assets/images/icon-shuffle.svg";
-import { Dropdown } from "../components/Dropdown";
-import FlashCard from "../components/FlashCard";
+import { Dropdown } from "../components/ui/Dropdown";
+import Flashcard from "../components/Flashcard";
 export default function AllCards() {
 	return (
 		<div className="screen-padding">
 			<NavBar />
 			<div className="flex flex-col self-stretch gap-300 lg:gap-400 ">
-				<NewCard />
+				<FlashcardForm />
 				{/* Flashcard Controls */}
 				<div className="flex pt-200 justify-between items-start self-stretch md:items-center">
 					{/* Cateogry Filter */}
@@ -26,9 +26,9 @@ export default function AllCards() {
 				</div>
 				{/* Flashcards Container */}
 				<div className="flex items-start content-start gap-250 self-stretch flex-wrap">
-					<FlashCard />
-					<FlashCard />
-					<FlashCard />
+					<Flashcard />
+					<Flashcard />
+					<Flashcard />
 				</div>
 			</div>
 		</div>

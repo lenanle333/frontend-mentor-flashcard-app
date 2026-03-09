@@ -1,6 +1,6 @@
-import { Dropdown } from "../../Dropdown";
-import Button from "../../Button";
-import { Checkbox } from "../../Checkbox";
+import { Dropdown } from "../../ui/Dropdown";
+import Button from "../../ui/Button";
+import { Checkbox } from "../../ui/Checkbox";
 import circle_check from "../../../assets/images/icon-circle-check.svg";
 import shuffle_icon from "../../../assets/images/icon-shuffle.svg";
 import reset_icon from "../../../assets/images/icon-reset.svg";
@@ -8,7 +8,7 @@ import prev_icon from "../../../assets/images/icon-chevron-left.svg";
 import next_icon from "../../../assets/images/icon-chevron-right.svg";
 import { ActiveCard } from "../ActiveCard";
 import styles from "./index.module.css";
-export const FlashCard = () => {
+export const FlashcardSection = () => {
 	return (
 		<div className={styles.container}>
 			{/* Header */}
