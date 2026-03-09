@@ -1,3 +1,6 @@
+import type { Flashcard as FlashcardType } from "../types/Flashcard";
+import React, { useEffect, useState } from "react";
+import { useAuth } from "../hooks/useAuth";
 import { NavBar } from "../components/NavBar";
 import FlashcardForm from "../components/forms/FlashcardForm";
 import Button from "../components/ui/Button";
@@ -5,7 +8,23 @@ import { Checkbox } from "../components/ui/Checkbox";
 import shuffleIcon from "../assets/images/icon-shuffle.svg";
 import { Dropdown } from "../components/ui/Dropdown";
 import Flashcard from "../components/Flashcard";
+import { getUserFlashcards } from "../services/flashcardService";
 export default function AllCards() {
+	const [flashcards, setFlashcards] = useState<FlashcardType[]>([]);
+	const { user } = useAuth();
+
+	useEffect(() => {
+		let unsubscribe: () => void;
+		if (user) {
+			unsubscribe = getUserFlashcards(user.uid, setFlashcards);
+		}
+		return () => {
+			if (unsubscribe) {
+				unsubscribe();
+			}
+		};
+	}, [user]);
+
 	return (
 		<div className="screen-padding">
 			<NavBar />
@@ -26,9 +45,18 @@ export default function AllCards() {
 				</div>
 				{/* Flashcards Container */}
 				<div className="flex items-start content-start gap-250 self-stretch flex-wrap">
-					<Flashcard />
-					<Flashcard />
-					<Flashcard />
+					{flashcards.map((flashcards) => (
+						<React.Fragment key={flashcards.id}>
+							<Flashcard
+								question={flashcards.question}
+								answer={flashcards.answer}
+								category={flashcards.category}
+								mastered={flashcards.mastered}
+								knownCount={flashcards.knownCount}
+								userId={flashcards.userId}
+							/>
+						</React.Fragment>
+					))}
 				</div>
 			</div>
 		</div>

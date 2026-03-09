@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../firebase";
+import { auth } from "../firebase/firebase";
 import { useAuth } from "../hooks/useAuth";
 import Button from "../components/ui/Button";
 import { TextInput } from "../components/ui/TextInput";
 import FormContainer from "../components/ui/FormContainer";
 
 export default function Login() {
-	const { user, loading } = useAuth();
+	const { user } = useAuth();
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 
@@ -20,9 +20,7 @@ export default function Login() {
 			console.error("Error logging in:", error);
 		}
 	};
-	if (loading) {
-		return <div>Loading...</div>;
-	}
+
 	return (
 		<div className="screen-padding">
 			<h1 className="text-preset-1">Login</h1>

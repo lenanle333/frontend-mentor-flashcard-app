@@ -18,5 +18,3 @@ const firebase = initializeApp({
 export const auth = getAuth(firebase);
 export const db = getFirestore(firebase);
 export const storage = getStorage(firebase);
-
-console.log("hello world");

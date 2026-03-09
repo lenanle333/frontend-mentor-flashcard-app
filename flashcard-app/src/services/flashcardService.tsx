@@ -1,5 +1,5 @@
-import { db } from "../firebase";
-import { collection, addDoc, getDoc, getDocs, updateDoc, deleteDoc, doc, query, where } from "firebase/firestore";
+import { db } from "../firebase/firebase";
+import { collection, addDoc, getDoc, updateDoc, deleteDoc, doc, query, where, onSnapshot } from "firebase/firestore";
 import type { Flashcard } from "../types/Flashcard";
 
 // Create a new flashcard
@@ -29,15 +29,12 @@ export const getFlashcard = async (flashcardId: string): Promise<Flashcard | nul
 };
 
 // Read all flashcards for a user
-export const getUserFlashcards = async (userId: string): Promise<Flashcard[]> => {
-	try {
-		const q = query(collection(db, "flashcards"), where("userId", "==", userId));
-		const querySnapshot = await getDocs(q);
-		return querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }) as Flashcard);
-	} catch (error) {
-		console.error("Error getting user flashcards:", error);
-		throw error;
-	}
+export const getUserFlashcards = (userId: string, callback: (flashcards: Flashcard[]) => void) => {
+	const q = query(collection(db, "flashcards"), where("userId", "==", userId));
+	return onSnapshot(q, (querySnapshot) => {
+		const flashcards = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }) as Flashcard);
+		callback(flashcards);
+	});
 };
 
 // Update a flashcard
