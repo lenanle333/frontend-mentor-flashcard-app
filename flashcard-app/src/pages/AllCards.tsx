@@ -31,10 +31,7 @@ export default function AllCards() {
 				<div className="flex pt-200 justify-between items-start self-stretch md:items-center">
 					{/* Cateogry Filter */}
 					<div className="flex flex-col justify-center items-start gap-125 flex-[1_0_0] md:flex-row md:gap-250 md:items-center md:justify-start">
-						<Dropdown
-							selectedCategories={selectedCategories}
-							onSelectionChange={setSelectedCategories}
-						/>
+						<Dropdown selectedCategories={selectedCategories} onSelectionChange={setSelectedCategories} />
 						{/* Hide Mastered Checkbox */}
 						<Checkbox label="Hide Mastered" />
 					</div>
