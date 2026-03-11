@@ -1,4 +1,4 @@
-import type { Flashcard as FlashcardType } from "../types/Flashcard";
+import type { UserFlashcard } from "../types/Flashcard";
 import React, { useState } from "react";
 import { useAuth } from "../hooks/useAuth";
 import { useUserFlashcards } from "../hooks/useUserFlashcards";
@@ -11,7 +11,7 @@ import { Dropdown } from "../components/ui/Dropdown";
 import Flashcard from "../components/Flashcard";
 export default function AllCards() {
 	const { user } = useAuth();
-	const [flashcards, setFlashcards] = useState<FlashcardType[]>([]);
+	const [flashcards, setFlashcards] = useState<UserFlashcard[]>([]);
 	const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
 
 	useUserFlashcards({ userId: user?.uid, setFlashcards });

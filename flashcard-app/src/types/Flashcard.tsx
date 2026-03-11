@@ -1,4 +1,4 @@
-export interface Flashcard {
+export interface UserFlashcard {
 	id?: string;
 	question: string;
 	answer: string;
