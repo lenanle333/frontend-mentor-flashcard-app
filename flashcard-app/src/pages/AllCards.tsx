@@ -4,7 +4,7 @@ import Button from "../components/Button";
 import { Checkbox } from "../components/Checkbox";
 import shuffleIcon from "../assets/images/icon-shuffle.svg";
 import { Dropdown } from "../components/Dropdown";
-import FlashCard from "../components/FlashCard";
+import FlashCard from "../components/Flashcard";
 export default function AllCards() {
 	return (
 		<div className="screen-padding">
