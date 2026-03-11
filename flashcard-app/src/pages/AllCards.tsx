@@ -1,6 +1,7 @@
 import type { Flashcard as FlashcardType } from "../types/Flashcard";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useAuth } from "../hooks/useAuth";
+import { useUserFlashcards } from "../hooks/useUserFlashcards";
 import { NavBar } from "../components/NavBar";
 import FlashcardForm from "../components/forms/FlashcardForm";
 import Button from "../components/ui/Button";
@@ -8,22 +9,18 @@ import { Checkbox } from "../components/ui/Checkbox";
 import shuffleIcon from "../assets/images/icon-shuffle.svg";
 import { Dropdown } from "../components/ui/Dropdown";
 import Flashcard from "../components/Flashcard";
-import { getUserFlashcards } from "../services/flashcardService";
-export default function AllCards() {
-	const [flashcards, setFlashcards] = useState<FlashcardType[]>([]);
-	const { user } = useAuth();
 
-	useEffect(() => {
-		let unsubscribe: () => void;
-		if (user) {
-			unsubscribe = getUserFlashcards(user.uid, setFlashcards);
-		}
-		return () => {
-			if (unsubscribe) {
-				unsubscribe();
-			}
-		};
-	}, [user]);
+export default function AllCards() {
+	const { user } = useAuth();
+	const [flashcards, setFlashcards] = useState<FlashcardType[]>([]);
+	const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+
+	useUserFlashcards({ userId: user?.uid, setFlashcards });
+
+	const filteredFlashcards =
+		selectedCategories.length === 0
+			? flashcards
+			: flashcards.filter((card) => card.category && selectedCategories.includes(card.category));
 
 	return (
 		<div className="screen-padding">
@@ -34,7 +31,10 @@ export default function AllCards() {
 				<div className="flex pt-200 justify-between items-start self-stretch md:items-center">
 					{/* Cateogry Filter */}
 					<div className="flex flex-col justify-center items-start gap-125 flex-[1_0_0] md:flex-row md:gap-250 md:items-center md:justify-start">
-						<Dropdown />
+						<Dropdown
+							selectedCategories={selectedCategories}
+							onSelectionChange={setSelectedCategories}
+						/>
 						{/* Hide Mastered Checkbox */}
 						<Checkbox label="Hide Mastered" />
 					</div>
@@ -45,7 +45,7 @@ export default function AllCards() {
 				</div>
 				{/* Flashcards Container */}
 				<div className="flex items-start content-start gap-250 self-stretch flex-wrap">
-					{flashcards.map((flashcards) => (
+					{filteredFlashcards.map((flashcards) => (
 						<React.Fragment key={flashcards.id}>
 							<Flashcard
 								question={flashcards.question}

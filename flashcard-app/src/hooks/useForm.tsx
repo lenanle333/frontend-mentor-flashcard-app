@@ -4,10 +4,7 @@ interface FormErrors {
 	[key: string]: string;
 }
 
-export const useForm = <T extends object>(
-	initialState: T,
-	validate: (values: T) => FormErrors,
-) => {
+export const useForm = <T extends object>(initialState: T, validate: (values: T) => FormErrors) => {
 	const [values, setValues] = useState<T>(initialState);
 	const [errors, setErrors] = useState<FormErrors>({});
 	const [isSubmitting, setIsSubmitting] = useState(false);
@@ -20,7 +17,7 @@ export const useForm = <T extends object>(
 		});
 	};
 
-	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>, onSubmit: (values: T) => Promise<void>) => {
+	const handleSubmit = async (e: React.SubmitEvent, onSubmit: (values: T) => Promise<void>) => {
 		e.preventDefault();
 		const validationErrors = validate(values);
 		setErrors(validationErrors);

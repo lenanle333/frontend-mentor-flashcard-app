@@ -1,26 +1,36 @@
 import { useState, useEffect, useRef } from "react";
-import flashcard_data from "../../../utils/data.json";
 import { CountCategories } from "../../../utils/CountCategories";
+import { useUserFlashcards } from "../../../hooks/useUserFlashcards";
+import { useAuth } from "../../../hooks/useAuth";
 import dropdown_icon from "../../../assets/images/icon-chevron-down.svg";
 import { Checkbox } from "../Checkbox";
 import styles from "./index.module.css";
-export const Dropdown = () => {
-	const menuRef = useRef<HTMLDivElement | null>(null);
+import type { Flashcard } from "../../../types/Flashcard";
 
-	// Show dropdown menu
+interface DropdownProps {
+	selectedCategories: string[];
+	onSelectionChange: (categories: string[]) => void;
+}
+
+export const Dropdown = ({ selectedCategories, onSelectionChange }: DropdownProps) => {
+	const { user } = useAuth();
+	const [flashcards, setFlashcards] = useState<Flashcard[]>([]);
+
+	useUserFlashcards({ userId: user?.uid, setFlashcards });
+
+	const menuRef = useRef<HTMLDivElement | null>(null);
 	const [menuIsVisible, setMenuIsVisible] = useState(false);
-	// Category counts derived from flashcard data (no effect needed)
-	const counts = CountCategories(flashcard_data.flashcards);
-	// All of the selected cateogries
-	const [selectedCategory, setSelectedCategory] = useState<string[]>([]);
+
+	const counts = CountCategories(flashcards);
+
 	const setCategory = (category: string) => {
-		if (selectedCategory.includes(category)) {
-			const items = selectedCategory.filter((item) => item !== category);
-			setSelectedCategory([...items]);
+		if (selectedCategories.includes(category)) {
+			onSelectionChange(selectedCategories.filter((c) => c !== category));
 		} else {
-			setSelectedCategory([...selectedCategory, category]);
+			onSelectionChange([...selectedCategories, category]);
 		}
 	};
+	// Close dropdown when clicked outside card
 	useEffect(() => {
 		const handler = (event: MouseEvent | TouchEvent) => {
 			if (menuIsVisible && menuRef.current && !menuRef.current.contains(event.target as Node)) {
@@ -54,8 +64,25 @@ export const Dropdown = () => {
 				aria-labelledby="dropdown-button"
 			>
 				{Object.keys(counts).map((category) => (
-					<div key={category} className={styles.dropdown_item} onClick={() => setCategory(category)} role="menuitem">
-						<Checkbox label={category} className="text-preset-5" />
+					<div
+						key={category}
+						className={styles.dropdown_item}
+						onClick={(e) => {
+							if ((e.target as HTMLElement).closest("input, label")) return;
+							setCategory(category);
+						}}
+						role="menuitem"
+					>
+						<Checkbox
+							label={category}
+							className="text-preset-5"
+							checked={selectedCategories.includes(category)}
+							onChange={(checked) =>
+								onSelectionChange(
+									checked ? [...selectedCategories, category] : selectedCategories.filter((c) => c !== category)
+								)
+							}
+						/>
 						<span className={styles.count}> ({counts[category]})</span>
 					</div>
 				))}

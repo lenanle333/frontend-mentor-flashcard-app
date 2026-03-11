@@ -14,13 +14,22 @@ export default function FlashcardForm() {
 	const [category, setCategory] = useState("");
 	const { user } = useAuth();
 
+	const capitalizeSentence = (str: string) => {
+		return str
+			.split(" ")
+			.map((word) => {
+				return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+			})
+			.join(" ");
+	};
+
 	const handleAddFlashcard = async (e: React.SubmitEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		if (user && question.trim() && answer.trim() && category.trim()) {
 			const newFlashcard: Omit<Flashcard, "id"> = {
 				question: question,
 				answer: answer,
-				category: category,
+				category: capitalizeSentence(category),
 				mastered: false,
 				knownCount: 0,
 				userId: user.uid,
