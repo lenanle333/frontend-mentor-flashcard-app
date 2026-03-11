@@ -1,4 +1,4 @@
-import type { UserFlashcard } from "../types/Flashcard";
+import type { UserFlashcard } from "../types/UserFlashcard";
 import React, { useState } from "react";
 import { useAuth } from "../hooks/useAuth";
 import { useUserFlashcards } from "../hooks/useUserFlashcards";

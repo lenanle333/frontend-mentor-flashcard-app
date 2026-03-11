@@ -1,10 +1,10 @@
 import { useEffect } from "react";
 import { getUserFlashcards } from "../services/flashcardService";
-import type { Flashcard } from "../types/Flashcard";
+import type { UserFlashcard } from "../types/UserFlashcard";
 
 interface UserFlashcards {
 	userId: string | undefined;
-	setFlashcards: (flashcards: Flashcard[]) => void;
+	setFlashcards: (flashcards: UserFlashcard[]) => void;
 }
 
 export function useUserFlashcards({ userId, setFlashcards }: UserFlashcards) {

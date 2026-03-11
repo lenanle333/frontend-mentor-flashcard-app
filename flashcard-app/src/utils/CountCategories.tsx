@@ -1,6 +1,6 @@
-import type { Flashcard } from "../types/Flashcard";
+import type { UserFlashcard } from "../types/UserFlashcard";
 
-export const CountCategories = (categories: Flashcard[]): Record<string, number> => {
+export const CountCategories = (categories: UserFlashcard[]): Record<string, number> => {
 	return categories.reduce(
 		(acc, currentCategory) => {
 			const type = currentCategory.category;

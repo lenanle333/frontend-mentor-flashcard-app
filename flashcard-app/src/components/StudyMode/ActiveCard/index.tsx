@@ -3,9 +3,9 @@ import yellow_star from "../../../assets/images/pattern-star-yellow.svg";
 import Tag from "../../Tag";
 import styles from "./index.module.css";
 import ProgressBar from "../../ProgressBar";
-import type { Flashcard } from "../../../types/Flashcard";
+import type { UserFlashcard } from "../../../types/UserFlashcard";
 
-export const ActiveCard = ({ id, question, answer, category, knownCount, mastered }: Flashcard) => {
+export const ActiveCard = ({ id, question, answer, category, knownCount, mastered }: UserFlashcard) => {
 	return (
 		<div className={styles.flashcard_content} key={id}>
 			<div className={styles.flashcard_bg} />

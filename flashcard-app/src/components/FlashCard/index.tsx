@@ -2,9 +2,9 @@ import styles from "./index.module.css";
 import Tag from "../Tag";
 import ProgressBar from "../ProgressBar";
 import menuIcon from "../../assets/images/icon-menu.svg";
-import type { Flashcard } from "../../types/Flashcard";
+import type { UserFlashcard } from "../../types/UserFlashcard";
 
-export default function Flashcard({ id, question, answer, category, knownCount, mastered }: Flashcard) {
+export default function Flashcard({ id, question, answer, category, knownCount, mastered }: UserFlashcard) {
 	return (
 		<div className={`card-style ${styles.container}`} key={id}>
 			<div className={styles.question}>{question}</div>

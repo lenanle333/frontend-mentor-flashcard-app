@@ -5,7 +5,7 @@ import { useAuth } from "../../../hooks/useAuth";
 import dropdown_icon from "../../../assets/images/icon-chevron-down.svg";
 import { Checkbox } from "../Checkbox";
 import styles from "./index.module.css";
-import type { Flashcard } from "../../../types/Flashcard";
+import type { UserFlashcard } from "../../../types/UserFlashcard";
 
 interface DropdownProps {
 	selectedCategories: string[];
@@ -14,7 +14,7 @@ interface DropdownProps {
 
 export const Dropdown = ({ selectedCategories, onSelectionChange }: DropdownProps) => {
 	const { user } = useAuth();
-	const [flashcards, setFlashcards] = useState<Flashcard[]>([]);
+	const [flashcards, setFlashcards] = useState<UserFlashcard[]>([]);
 
 	useUserFlashcards({ userId: user?.uid, setFlashcards });
 
@@ -79,7 +79,7 @@ export const Dropdown = ({ selectedCategories, onSelectionChange }: DropdownProp
 							checked={selectedCategories.includes(category)}
 							onChange={(checked) =>
 								onSelectionChange(
-									checked ? [...selectedCategories, category] : selectedCategories.filter((c) => c !== category)
+									checked ? [...selectedCategories, category] : selectedCategories.filter((c) => c !== category),
 								)
 							}
 						/>

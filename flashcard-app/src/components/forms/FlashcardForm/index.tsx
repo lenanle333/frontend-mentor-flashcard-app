@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useAuth } from "../../../hooks/useAuth";
-import type { Flashcard } from "../../../types/Flashcard";
+import type { UserFlashcard } from "../../../types/UserFlashcard";
 import { addFlashcard } from "../../../services/flashcardService";
 import Button from "../../ui/Button";
 import plusIcon from "../../../assets/images/icon-circle-plus.svg";
@@ -26,7 +26,7 @@ export default function FlashcardForm() {
 	const handleAddFlashcard = async (e: React.SubmitEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		if (user && question.trim() && answer.trim() && category.trim()) {
-			const newFlashcard: Omit<Flashcard, "id"> = {
+			const newFlashcard: Omit<UserFlashcard, "id"> = {
 				question: question,
 				answer: answer,
 				category: capitalizeSentence(category),

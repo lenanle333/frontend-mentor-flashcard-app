@@ -1,9 +1,9 @@
 import { db } from "../firebase/firebase";
 import { collection, addDoc, getDoc, updateDoc, deleteDoc, doc, query, where, onSnapshot } from "firebase/firestore";
-import type { Flashcard } from "../types/Flashcard";
+import type { UserFlashcard } from "../types/UserFlashcard";
 
 // Create a new flashcard
-export const addFlashcard = async (flashcard: Omit<Flashcard, "id">): Promise<string> => {
+export const addFlashcard = async (flashcard: Omit<UserFlashcard, "id">): Promise<string> => {
 	try {
 		const docRef = await addDoc(collection(db, "flashcards"), flashcard);
 		return docRef.id;
@@ -14,11 +14,11 @@ export const addFlashcard = async (flashcard: Omit<Flashcard, "id">): Promise<st
 };
 
 // Read a single flashcard
-export const getFlashcard = async (flashcardId: string): Promise<Flashcard | null> => {
+export const getFlashcard = async (flashcardId: string): Promise<UserFlashcard | null> => {
 	try {
 		const flashcardDoc = await getDoc(doc(db, "flashcards", flashcardId));
 		if (flashcardDoc.exists()) {
-			return { id: flashcardDoc.id, ...flashcardDoc.data() } as Flashcard;
+			return { id: flashcardDoc.id, ...flashcardDoc.data() } as UserFlashcard;
 		} else {
 			return null;
 		}
@@ -29,16 +29,16 @@ export const getFlashcard = async (flashcardId: string): Promise<Flashcard | nul
 };
 
 // Read all flashcards for a user
-export const getUserFlashcards = (userId: string, callback: (flashcards: Flashcard[]) => void) => {
+export const getUserFlashcards = (userId: string, callback: (flashcards: UserFlashcard[]) => void) => {
 	const q = query(collection(db, "flashcards"), where("userId", "==", userId));
 	return onSnapshot(q, (querySnapshot) => {
-		const flashcards = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }) as Flashcard);
+		const flashcards = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }) as UserFlashcard);
 		callback(flashcards);
 	});
 };
 
 // Update a flashcard
-export const updateFlashcard = async (flashcardId: string, updates: Partial<Flashcard>): Promise<void> => {
+export const updateFlashcard = async (flashcardId: string, updates: Partial<UserFlashcard>): Promise<void> => {
 	try {
 		await updateDoc(doc(db, "flashcards", flashcardId), updates);
 	} catch (error) {

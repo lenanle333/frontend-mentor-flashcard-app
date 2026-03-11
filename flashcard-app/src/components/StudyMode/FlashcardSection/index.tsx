@@ -10,12 +10,12 @@ import next_icon from "../../../assets/images/icon-chevron-right.svg";
 import { ActiveCard } from "../ActiveCard";
 import { useAuth } from "../../../hooks/useAuth";
 import { useUserFlashcards } from "../../../hooks/useUserFlashcards";
-import type { Flashcard } from "../../../types/Flashcard";
+import type { UserFlashcard } from "../../../types/UserFlashcard";
 import styles from "./index.module.css";
 
 export const FlashcardSection = () => {
 	const { user } = useAuth();
-	const [flashcards, setFlashcards] = useState<Flashcard[]>([]);
+	const [flashcards, setFlashcards] = useState<UserFlashcard[]>([]);
 	const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
 	const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -42,10 +42,7 @@ export const FlashcardSection = () => {
 			<div className={styles.header}>
 				<div className={styles.flashcard_controls}>
 					<div className={styles.filters}>
-						<Dropdown
-							selectedCategories={selectedCategories}
-							onSelectionChange={setSelectedCategories}
-						/>
+						<Dropdown selectedCategories={selectedCategories} onSelectionChange={setSelectedCategories} />
 						<Checkbox label="Hide Mastered" />
 					</div>
 					{/* TODO: ADD SHUFFLE FUNCTIONALITY */}
