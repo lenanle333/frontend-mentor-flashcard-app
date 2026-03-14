@@ -1,0 +1,77 @@
+@reference "../../index.css";
+
+.container {
+	display: flex;
+	width: 21.25rem;
+	height: 14.875rem;
+	flex-direction: column;
+	align-items: flex-start;
+	@apply lg:w-[24.8125rem];
+}
+
+.question {
+	display: flex;
+	padding: var(--spacing-200);
+	align-items: center;
+	gap: var(--spacing-125);
+	align-self: stretch;
+	border-bottom: 1px solid var(--color-neutral-900);
+	@apply text-preset-3 text-neutral-900;
+}
+
+.answerBox {
+	display: flex;
+	padding: var(--spacing-200);
+	flex-direction: column;
+	align-items: flex-start;
+	gap: var(--spacing-75);
+	flex: 1 0 0;
+	align-self: stretch;
+	border-bottom: 1px solid var(--color-neutral-900);
+	@apply text-preset-5 text-neutral-900;
+}
+.answerBox span {
+	opacity: 0.6;
+}
+.footer {
+	display: flex;
+	height: 3.5rem;
+	padding: 0 var(--spacing-200);
+	align-items: center;
+	gap: var(--spacing-100);
+	flex-shrink: 0;
+	align-self: stretch;
+}
+.tagBox {
+	display: flex;
+	padding-right: var(--spacing-125);
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+	gap: 0.625rem;
+	align-self: stretch;
+	border-right: 1px solid var(--color-neutral-900);
+}
+.progressBarBox {
+	display: flex;
+	padding-right: var(--spacing-125);
+	align-items: center;
+	gap: var(--spacing-100);
+	flex: 1 0 0;
+	align-self: stretch;
+	border-right: 1px solid var(--color-neutral-900);
+}
+.menuBox {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	align-self: stretch;
+}
+.menuBtn {
+	display: flex;
+	width: 1.5rem;
+	height: 1.5rem;
+	justify-content: center;
+	align-items: center;
+	gap: var(--spacing-0);
+}
