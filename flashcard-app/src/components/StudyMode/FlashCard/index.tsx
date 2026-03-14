@@ -1,4 +1,4 @@
-import { Dropdown } from "../../Dropdown";
+import { CategoryDropdown } from "../../CategoryDropdown";
 import Button from "../../Button";
 import { Checkbox } from "../../Checkbox";
 import circle_check from "../../../assets/images/icon-circle-check.svg";
@@ -15,7 +15,7 @@ export const FlashCard = () => {
 			<div className={styles.header}>
 				<div className={styles.flashcard_controls}>
 					<div className={styles.filters}>
-						<Dropdown />
+						<CategoryDropdown />
 						<Checkbox label="Hide Mastered" />
 					</div>
 					{/* TODO: ADD SHUFFLE FUNCTIONALITY */}

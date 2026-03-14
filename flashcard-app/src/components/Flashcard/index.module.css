@@ -20,6 +20,7 @@
 }
 
 .answerBox {
+	position: relative;
 	display: flex;
 	padding: var(--spacing-200);
 	flex-direction: column;
@@ -74,4 +75,14 @@
 	justify-content: center;
 	align-items: center;
 	gap: var(--spacing-0);
+	transition: 100ms;
+	border-radius: var(--radius-4);
+}
+.menuBtn img {
+	flex-shrink: 0;
+}
+.menuBtn:hover {
+	border: 1px solid var(--color-neutral-900);
+	background: var(--color-neutral-0);
+	box-shadow: 2px 2px 0 0 var(--color-neutral-900);
 }

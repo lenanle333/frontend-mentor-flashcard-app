@@ -1,14 +1,20 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import flashcard_data from "../../utils/data.json";
 import { CountCategories } from "../../utils/CountCategories";
+import { useOnClickOutside } from "../../utils/useOnClickOutside";
 import dropdown_icon from "../../assets/images/icon-chevron-down.svg";
 import { Checkbox } from "../Checkbox";
 import styles from "./index.module.css";
-export const Dropdown = () => {
-	const menuRef = useRef<HTMLDivElement | null>(null);
-
-	// Show dropdown menu
+export const CategoryDropdown = () => {
+	const menuRef = useRef<HTMLDivElement>(null);
 	const [menuIsVisible, setMenuIsVisible] = useState(false);
+
+	const handleClicksOutside = () => {
+		setMenuIsVisible(false);
+	};
+
+	useOnClickOutside(menuRef, handleClicksOutside);
+
 	// Category counts derived from flashcard data (no effect needed)
 	const counts = CountCategories(flashcard_data.flashcards);
 	// All of the selected cateogries
@@ -21,19 +27,6 @@ export const Dropdown = () => {
 			setSelectedCategory([...selectedCategory, category]);
 		}
 	};
-	useEffect(() => {
-		const handler = (event: MouseEvent | TouchEvent) => {
-			if (menuIsVisible && menuRef.current && !menuRef.current.contains(event.target as Node)) {
-				setMenuIsVisible(false);
-			}
-		};
-		document.addEventListener("mousedown", handler);
-		document.addEventListener("touchstart", handler);
-		return () => {
-			document.removeEventListener("mousedown", handler);
-			document.removeEventListener("touchstart", handler);
-		};
-	}, [menuIsVisible]);
 	return (
 		<div className="flex flex-col gap-2 relative" ref={menuRef}>
 			{/* Dropdown btn */}
