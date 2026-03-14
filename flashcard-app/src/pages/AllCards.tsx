@@ -4,7 +4,7 @@ import Button from "../components/Button";
 import { Checkbox } from "../components/Checkbox";
 import shuffleIcon from "../assets/images/icon-shuffle.svg";
 import { Dropdown } from "../components/Dropdown";
-import Flashcardss from "../components/Flashcardss";
+import Flashcard from "../components/Flashcard";
 export default function AllCards() {
 	return (
 		<div className="screen-padding">
@@ -26,9 +26,9 @@ export default function AllCards() {
 				</div>
 				{/* Flashcards Container */}
 				<div className="flex items-start content-start gap-250 self-stretch flex-wrap">
-					<Flashcardss />
-					<Flashcardss />
-					<Flashcardss />
+					<Flashcard />
+					<Flashcard />
+					<Flashcard />
 				</div>
 			</div>
 		</div>
