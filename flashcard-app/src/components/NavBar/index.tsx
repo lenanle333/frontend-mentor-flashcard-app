@@ -1,6 +1,6 @@
 import logoSmall from "../../assets/images/logo-small.svg";
 import logoLarge from "../../assets/images/logo-large.svg";
-import { Tabs } from "../Tabs";
+import { Tabs } from "../ui/Tabs";
 export const NavBar = () => {
 	return (
 		<div className="flex justify-between items-centerw-full self-stretch">

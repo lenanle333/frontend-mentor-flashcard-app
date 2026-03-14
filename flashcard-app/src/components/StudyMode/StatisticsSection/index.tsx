@@ -3,7 +3,7 @@ import brain_icon from "../../../assets/images/icon-stats-mastered.svg";
 import book_icon from "../../../assets/images/icon-stats-in-progress.svg";
 import box_icon from "../../../assets/images/icon-stats-not-started.svg";
 import styles from "./index.module.css";
-export const Statistics = () => {
+export const StatisticsSection = () => {
 	return (
 		<div className={styles.container}>
 			<h1 className="text-preset-2">Study Statistics</h1>
