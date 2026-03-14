@@ -8,7 +8,7 @@ import Button from "../components/ui/Button";
 import { Checkbox } from "../components/ui/Checkbox";
 import shuffleIcon from "../assets/images/icon-shuffle.svg";
 import { Dropdown } from "../components/ui/Dropdown";
-import Flashcard from "../components/Flashcardss";
+import Flashcard from "../components/Flashcard";
 
 export default function AllCards() {
 	const { user } = useAuth();
