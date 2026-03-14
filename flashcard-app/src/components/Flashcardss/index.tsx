@@ -2,7 +2,7 @@ import styles from "./index.module.css";
 import Tag from "../Tag";
 import ProgressBar from "../ProgressBar";
 import menuIcon from "../../assets/images/icon-menu.svg";
-export default function Flashcard() {
+export default function Flashcardss() {
 	return (
 		<div className={`card-style ${styles.container}`}>
 			<div className={styles.question}>What does HTML stand for?</div>
