@@ -1,21 +1,31 @@
 @reference "../../index.css";
 
+.overlay{
+	position: fixed; 
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0.7;
+	background: var(--color-neutral-900);	
+	z-index: 5; 
+}
 .container {
 	display: flex;
 	width: 37.5rem;
 	padding: var(--spacing-400);
 	flex-direction: column;
-	align-items: center;
+	justify-content: center;
+	align-self: center;
+	align-content: center;
 	gap: var(--spacing-300);
-	position: absolute;
-	left: 50%;
-	bottom: 50%;
 	border-radius: var(--radius-16);
 	border-top: 1px solid var(--color-neutral-900);
 	border-right: 4px solid var(--color-neutral-900);
 	border-bottom: 4px solid var(--color-neutral-900);
 	border-left: 1px solid var(--color-neutral-900);
 	background: var(--color-neutral-0);
+	z-index: 10;
 	@apply md:p-300 lg:p-400;
 }
 .form {
