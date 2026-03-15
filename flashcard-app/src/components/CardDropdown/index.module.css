@@ -1,0 +1,37 @@
+@reference "../../index.css";
+
+.container {
+	display: flex;
+	width: 8.75rem;
+	flex-direction: column;
+	align-items: flex-start;
+	position: absolute;
+	right: 0.15rem;
+	bottom: 0.25rem;
+	border-radius: var(--radius-8);
+	border: 1px solid var(--color-neutral-900);
+	background: var(--color-neutral-0);
+	box-shadow: 0 3px 8px 0 rgba(46, 20, 1, 0.2);
+}
+.item {
+	display: flex;
+	width: 100%;
+	padding: var(--spacing-100) var(--spacing-200);
+	align-items: center;
+	gap: var(--spacing-100);
+	border-radius: var(--radius-8);
+	background: var(--color-neutral-0);
+	cursor: pointer;
+	transition: 200ms ease-out;
+}
+.item:hover {
+	background-color: var(--color-neutral-100);
+}
+.item img {
+	flex-shrink: 0;
+}
+span {
+	opacity: unset !important;
+	color: var(--color-neutral-900);
+	@apply text-preset-5!;
+}
