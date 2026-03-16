@@ -1,5 +1,4 @@
-import blue_star from "../../../assets/images/pattern-star-blue.svg";
-import yellow_star from "../../../assets/images/pattern-star-yellow.svg";
+import { blueStar, yellowStar } from "../../../assets/images";
 import Tag from "../../Tag";
 import styles from "./index.module.css";
 import ProgressBar from "../../ProgressBar";
@@ -16,8 +15,8 @@ export const ActiveCard = ({ id, question, answer, category, knownCount, mastere
 				<div className={styles.question}>{question}</div>
 				<div className={styles.hint}>{answer}</div>
 			</div>
-			<img className="size-6 absolute right-7.5 top-10" src={blue_star} alt="blue star" />
-			<img className="size-8 absolute left-7 bottom-13" src={yellow_star} alt="yellow star" />
+			<img className="size-6 absolute right-7.5 top-10" src={blueStar} alt="blue star" />
+			<img className="size-8 absolute left-7 bottom-13" src={yellowStar} alt="yellow star" />
 			{/* Progress Bar */}
 			<ProgressBar knownCount={knownCount} mastered={mastered} />
 		</div>

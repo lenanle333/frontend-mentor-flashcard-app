@@ -1,12 +1,8 @@
 import { useState } from "react";
-import { Dropdown } from "../../ui/Dropdown";
+import { CategoryDropdown } from "../../ui/CategoryDropdown";
 import Button from "../../ui/Button";
 import { Checkbox } from "../../ui/Checkbox";
-import circle_check from "../../../assets/images/icon-circle-check.svg";
-import shuffle_icon from "../../../assets/images/icon-shuffle.svg";
-import reset_icon from "../../../assets/images/icon-reset.svg";
-import prev_icon from "../../../assets/images/icon-chevron-left.svg";
-import next_icon from "../../../assets/images/icon-chevron-right.svg";
+import { circleCheckIcon, shuffleIcon, resetIcon, leftIcon, rightIcon } from "../../../assets/images";
 import { ActiveCard } from "../ActiveCard";
 import { useAuth } from "../../../hooks/useAuth";
 import { useUserFlashcards } from "../../../hooks/useUserFlashcards";
@@ -42,12 +38,12 @@ export const FlashcardSection = () => {
 			<div className={styles.header}>
 				<div className={styles.flashcard_controls}>
 					<div className={styles.filters}>
-						<Dropdown selectedCategories={selectedCategories} onSelectionChange={setSelectedCategories} />
+						<CategoryDropdown selectedCategories={selectedCategories} onSelectionChange={setSelectedCategories} />
 						<Checkbox label="Hide Mastered" />
 					</div>
 					{/* TODO: ADD SHUFFLE FUNCTIONALITY */}
 					<Button variant="border" onClick={() => ""}>
-						<img src={shuffle_icon} alt="shuffle" />
+						<img src={shuffleIcon} alt="shuffle" />
 						Shuffle
 					</Button>
 				</div>
@@ -64,10 +60,10 @@ export const FlashcardSection = () => {
 				</div>
 				<div className={styles.actions}>
 					<Button variant="primary" className="w-full md:w-auto">
-						<img src={circle_check} alt="I know this" />I Know This
+						<img src={circleCheckIcon} alt="I know this" />I Know This
 					</Button>
 					<Button variant="secondary" className="w-full md:w-auto">
-						<img src={reset_icon} alt="reset progress" />
+						<img src={resetIcon} alt="reset progress" />
 						Reset Progress
 					</Button>
 				</div>
@@ -76,7 +72,7 @@ export const FlashcardSection = () => {
 			{/* Navigation */}
 			<div className={styles.nav_controls}>
 				<button className={styles.nav_button} onClick={goPrev} disabled={!canGoPrev} type="button">
-					<img src={prev_icon} alt="Previous Card" />
+					<img src={leftIcon} alt="Previous Card" />
 					<span className="hidden md:flex">Previous</span>
 				</button>
 				<span>
@@ -84,7 +80,7 @@ export const FlashcardSection = () => {
 				</span>
 				<button className={styles.nav_button} onClick={goNext} disabled={!canGoNext} type="button">
 					<span className="hidden md:flex">Next</span>
-					<img src={next_icon} alt="Next Card" />
+					<img src={rightIcon} alt="Next Card" />
 				</button>
 			</div>
 		</div>

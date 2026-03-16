@@ -1,7 +1,4 @@
-import layers_icon from "../../../assets/images/icon-stats-total.svg";
-import brain_icon from "../../../assets/images/icon-stats-mastered.svg";
-import book_icon from "../../../assets/images/icon-stats-in-progress.svg";
-import box_icon from "../../../assets/images/icon-stats-not-started.svg";
+import { totalIcon, brainIcon, bookIcon, notStartedIcon } from "../../../assets/images";
 import styles from "./index.module.css";
 export const StatisticsSection = () => {
 	return (
@@ -14,7 +11,7 @@ export const StatisticsSection = () => {
 						<span>40</span>
 					</div>
 					<div className={`${styles.icon_container} bg-blue-400`}>
-						<img className="size-6" src={layers_icon} alt="total cards icon" />
+						<img className="size-6" src={totalIcon} alt="total cards icon" />
 					</div>
 				</div>
 				<div className={styles.card}>
@@ -23,7 +20,7 @@ export const StatisticsSection = () => {
 						<span>11</span>
 					</div>
 					<div className={`${styles.icon_container} bg-teal-400`}>
-						<img className="size-6" src={brain_icon} alt="total cards icon" />
+						<img className="size-6" src={brainIcon} alt="total cards icon" />
 					</div>
 				</div>
 				<div className={styles.card}>
@@ -32,7 +29,7 @@ export const StatisticsSection = () => {
 						<span>21</span>
 					</div>
 					<div className={`${styles.icon_container} bg-pink-500`}>
-						<img className="size-6" src={book_icon} alt="total cards icon" />
+						<img className="size-6" src={bookIcon} alt="total cards icon" />
 					</div>
 				</div>
 				<div className={styles.card}>
@@ -41,7 +38,7 @@ export const StatisticsSection = () => {
 						<span>8</span>
 					</div>
 					<div className={`${styles.icon_container} bg-pink-400`}>
-						<img className="size-6" src={box_icon} alt="total cards icon" />
+						<img className="size-6" src={notStartedIcon} alt="total cards icon" />
 					</div>
 				</div>
 			</div>

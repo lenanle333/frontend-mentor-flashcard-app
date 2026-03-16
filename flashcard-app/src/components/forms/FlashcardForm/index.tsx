@@ -3,7 +3,7 @@ import { useAuth } from "../../../hooks/useAuth";
 import type { UserFlashcard } from "../../../types/UserFlashcard";
 import { addFlashcard } from "../../../services/flashcardService";
 import Button from "../../ui/Button";
-import plusIcon from "../../../assets/images/icon-circle-plus.svg";
+import { plusIcon } from "../../../assets/images";
 import { TextInput } from "../../ui/TextInput";
 import { TextArea } from "../../ui/TextArea";
 import FormContainer from "../../ui/FormContainer";

@@ -6,8 +6,10 @@ import { NavBar } from "../components/NavBar";
 import FlashcardForm from "../components/forms/FlashcardForm";
 import Button from "../components/ui/Button";
 import { Checkbox } from "../components/ui/Checkbox";
-import shuffleIcon from "../assets/images/icon-shuffle.svg";
-import { Dropdown } from "../components/ui/Dropdown";
+import { shuffleIcon } from "../assets/images";
+// changes
+import { CategoryDropdown } from "../components/ui/CategoryDropdown";
+// changes
 import Flashcard from "../components/Flashcard";
 
 export default function AllCards() {
@@ -31,7 +33,10 @@ export default function AllCards() {
 				<div className="flex pt-200 justify-between items-start self-stretch md:items-center">
 					{/* Cateogry Filter */}
 					<div className="flex flex-col justify-center items-start gap-125 flex-[1_0_0] md:flex-row md:gap-250 md:items-center md:justify-start">
-						<Dropdown selectedCategories={selectedCategories} onSelectionChange={setSelectedCategories} />
+						{/* chages */}
+
+						<CategoryDropdown selectedCategories={selectedCategories} onSelectionChange={setSelectedCategories} />
+						{/* chages */}
 						{/* Hide Mastered Checkbox */}
 						<Checkbox label="Hide Mastered" />
 					</div>

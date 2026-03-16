@@ -1,5 +1,4 @@
-import logoSmall from "../../assets/images/logo-small.svg";
-import logoLarge from "../../assets/images/logo-large.svg";
+import { logoSmall, logoLarge } from "../../assets/images";
 import { Tabs } from "../ui/Tabs";
 export const NavBar = () => {
 	return (

@@ -1,49 +1,44 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import { CountCategories } from "../../../utils/CountCategories";
 import { useUserFlashcards } from "../../../hooks/useUserFlashcards";
 import { useAuth } from "../../../hooks/useAuth";
-import dropdown_icon from "../../../assets/images/icon-chevron-down.svg";
+import { useOnClickOutside } from "../../../hooks/useOnClickOutside";
+import { downIcon } from "../../../assets/images";
 import { Checkbox } from "../Checkbox";
 import styles from "./index.module.css";
 import type { UserFlashcard } from "../../../types/UserFlashcard";
 
-interface DropdownProps {
+interface CategoryDropdownProps {
 	selectedCategories: string[];
 	onSelectionChange: (categories: string[]) => void;
 }
 
-export const Dropdown = ({ selectedCategories, onSelectionChange }: DropdownProps) => {
+export const CategoryDropdown = ({ selectedCategories, onSelectionChange }: CategoryDropdownProps) => {
 	const { user } = useAuth();
 	const [flashcards, setFlashcards] = useState<UserFlashcard[]>([]);
-
 	useUserFlashcards({ userId: user?.uid, setFlashcards });
 
-	const menuRef = useRef<HTMLDivElement | null>(null);
-	const [menuIsVisible, setMenuIsVisible] = useState(false);
-
+	// Counts # of categories
 	const counts = CountCategories(flashcards);
-
+	const [selectedCategory, setSelectedCategory] = useState<string[]>([]);
 	const setCategory = (category: string) => {
-		if (selectedCategories.includes(category)) {
-			onSelectionChange(selectedCategories.filter((c) => c !== category));
+		if (selectedCategory.includes(category)) {
+			const items = selectedCategory.filter((item) => item !== category);
+			setSelectedCategory([...items]);
 		} else {
-			onSelectionChange([...selectedCategories, category]);
+			setSelectedCategory([...selectedCategory, category]);
 		}
 	};
-	// Close dropdown when clicked outside card
-	useEffect(() => {
-		const handler = (event: MouseEvent | TouchEvent) => {
-			if (menuIsVisible && menuRef.current && !menuRef.current.contains(event.target as Node)) {
-				setMenuIsVisible(false);
-			}
-		};
-		document.addEventListener("mousedown", handler);
-		document.addEventListener("touchstart", handler);
-		return () => {
-			document.removeEventListener("mousedown", handler);
-			document.removeEventListener("touchstart", handler);
-		};
-	}, [menuIsVisible]);
+	// Dropdown visibility
+	const menuRef = useRef<HTMLDivElement>(null);
+	// const menuRef = useRef<HTMLDivElement | null>(null);
+	const [menuIsVisible, setMenuIsVisible] = useState(false);
+
+	const handleClicksOutside = () => {
+		setMenuIsVisible(false);
+	};
+	useOnClickOutside(menuRef, handleClicksOutside);
+
 	return (
 		<div className="flex flex-col gap-2 relative" ref={menuRef}>
 			{/* Dropdown btn */}
@@ -54,7 +49,7 @@ export const Dropdown = ({ selectedCategories, onSelectionChange }: DropdownProp
 				aria-haspopup="true"
 				aria-controls="dropdown-menu"
 			>
-				All Categories <img src={dropdown_icon} alt="dropdown arrow" />
+				All Categories <img src={downIcon} alt="dropdown arrow" />
 			</button>
 			{/* Dropdown menu */}
 			<div

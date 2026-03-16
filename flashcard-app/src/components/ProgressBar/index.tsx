@@ -1,5 +1,5 @@
 import styles from "./index.module.css";
-import brainIcon from "../../assets/images/icon-mastered.svg";
+import { brainIcon } from "../../assets/images";
 interface ProgressBarProps {
 	mastered: boolean;
 	knownCount: number;
