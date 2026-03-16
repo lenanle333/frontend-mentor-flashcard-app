@@ -1,4 +1,4 @@
-import { useEffect, type RefObject } from "react";
+import { type RefObject } from "react";
 
 export const useOnClickOutside = (
 	ref: RefObject<HTMLElement | null>,
@@ -13,16 +13,13 @@ export const useOnClickOutside = (
 		// Otherwise, run function
 		callback();
 	};
-
-	useEffect(() => {
-		if (addEventListener) {
-			document.addEventListener("mousedown", handleClick);
-			document.addEventListener("touchstart", handleClick);
-		}
-		// Checks for clicks and taps
-		return () => {
-			document.removeEventListener("mousedown", handleClick);
-			document.removeEventListener("touchstart", handleClick);
-		};
-	});
+	if (addEventListener) {
+		document.addEventListener("mousedown", handleClick);
+		document.addEventListener("touchstart", handleClick);
+	}
+	// Checks for clicks and taps
+	return () => {
+		document.removeEventListener("mousedown", handleClick);
+		document.removeEventListener("touchstart", handleClick);
+	};
 };

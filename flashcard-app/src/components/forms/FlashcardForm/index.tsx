@@ -7,21 +7,12 @@ import { plusIcon } from "../../../assets/images";
 import { TextInput } from "../../ui/TextInput";
 import { TextArea } from "../../ui/TextArea";
 import FormContainer from "../../ui/FormContainer";
-
+import { CapitalizeSentence } from "../../../utils/CapitalizeSentence";
 export default function FlashcardForm() {
 	const [question, setQuestion] = useState("");
 	const [answer, setAnswer] = useState("");
 	const [category, setCategory] = useState("");
 	const { user } = useAuth();
-
-	const capitalizeSentence = (str: string) => {
-		return str
-			.split(" ")
-			.map((word) => {
-				return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
-			})
-			.join(" ");
-	};
 
 	const handleAddFlashcard = async (e: React.SubmitEvent<HTMLFormElement>) => {
 		e.preventDefault();
@@ -29,8 +20,7 @@ export default function FlashcardForm() {
 			const newFlashcard: Omit<UserFlashcard, "id"> = {
 				question: question,
 				answer: answer,
-				category: capitalizeSentence(category),
-				mastered: false,
+				category: CapitalizeSentence(category),
 				knownCount: 0,
 				userId: user.uid,
 			};
@@ -42,9 +32,6 @@ export default function FlashcardForm() {
 		}
 	};
 
-	// if(!user){
-	// 	return <div>Please login to view Flashcards</div>;
-	// }
 	return (
 		<FormContainer>
 			<form className="flex flex-col items-start gap-200 self-stretch" onSubmit={handleAddFlashcard}>

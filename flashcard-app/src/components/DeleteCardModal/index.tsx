@@ -1,13 +1,20 @@
 import styles from "./index.module.css";
 import Button from "../ui/Button";
+import { deleteFlashcard } from "../../services/flashcardService";
+
 type DeleteCardModalProps = {
 	isVisible: boolean;
 	setIsVisible: (value: boolean) => void;
+	id: string;
 };
 
-export default function DeleteCardModal({ setIsVisible }: DeleteCardModalProps) {
+export default function DeleteCardModal({ setIsVisible, id }: DeleteCardModalProps) {
 	const handleCloseModal = () => {
 		setIsVisible(false);
+	};
+	const handleDeleteCard = async (id: string) => {
+		await deleteFlashcard(id);
+		handleCloseModal();
 	};
 	return (
 		<div className="flex-center">
@@ -22,7 +29,9 @@ export default function DeleteCardModal({ setIsVisible }: DeleteCardModalProps) 
 					<Button variant="secondary" onClick={handleCloseModal}>
 						Cancel Card
 					</Button>
-					<Button variant="primary">Delete Card</Button>
+					<Button variant="primary" onClick={() => handleDeleteCard(id)}>
+						Delete Card
+					</Button>
 				</div>
 			</div>
 		</div>
