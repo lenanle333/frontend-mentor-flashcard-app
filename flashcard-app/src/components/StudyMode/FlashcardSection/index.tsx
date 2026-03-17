@@ -8,29 +8,31 @@ import { useAuth } from "../../../hooks/useAuth";
 import { useUserFlashcards } from "../../../hooks/useUserFlashcards";
 import type { UserFlashcard } from "../../../types/UserFlashcard";
 import styles from "./index.module.css";
+import { handleFilterByCategory, handleFilterByMastered } from "../../../utils/filter_cards_utils";
 
 export const FlashcardSection = () => {
 	const { user } = useAuth();
 	const [flashcards, setFlashcards] = useState<UserFlashcard[]>([]);
 	const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+	const [hideMasteredCards, setHideMasteredCards] = useState(false);
 	const [currentIndex, setCurrentIndex] = useState(0);
 
 	useUserFlashcards({ userId: user?.uid, setFlashcards });
 
-	const filteredFlashcards =
-		selectedCategories.length === 0
-			? flashcards
-			: flashcards.filter((card) => card.category && selectedCategories.includes(card.category));
+	const cards_filtered_by_category = handleFilterByCategory(selectedCategories, flashcards);
+	// Hide mastered cards
+	const visibleFlashcards = handleFilterByMastered(hideMasteredCards, cards_filtered_by_category);
 
-	const displayIndex = filteredFlashcards.length
-		? Math.min(currentIndex, Math.max(0, filteredFlashcards.length - 1))
-		: 0;
-	const currentCard = filteredFlashcards[displayIndex];
+	const handleHideMasteredCards = () => {
+		setHideMasteredCards((check) => !check);
+	};
+	const displayIndex = visibleFlashcards.length ? Math.min(currentIndex, Math.max(0, visibleFlashcards.length - 1)) : 0;
+	const currentCard = visibleFlashcards[displayIndex];
 	const canGoPrev = displayIndex > 0;
-	const canGoNext = displayIndex < filteredFlashcards.length - 1 && filteredFlashcards.length > 0;
+	const canGoNext = displayIndex < visibleFlashcards.length - 1 && visibleFlashcards.length > 0;
 
 	const goPrev = () => setCurrentIndex((i) => Math.max(0, i - 1));
-	const goNext = () => setCurrentIndex((i) => Math.min(filteredFlashcards.length - 1, i + 1));
+	const goNext = () => setCurrentIndex((i) => Math.min(visibleFlashcards.length - 1, i + 1));
 
 	return (
 		<div className={styles.container}>
@@ -39,7 +41,7 @@ export const FlashcardSection = () => {
 				<div className={styles.flashcard_controls}>
 					<div className={styles.filters}>
 						<CategoryDropdown selectedCategories={selectedCategories} onSelectionChange={setSelectedCategories} />
-						<Checkbox label="Hide Mastered" />
+						<Checkbox label="Hide Mastered" checked={hideMasteredCards} onChange={handleHideMasteredCards} />
 					</div>
 					{/* TODO: ADD SHUFFLE FUNCTIONALITY */}
 					<Button variant="border" onClick={() => ""}>
@@ -76,7 +78,7 @@ export const FlashcardSection = () => {
 					<span className="hidden md:flex">Previous</span>
 				</button>
 				<span>
-					Card {filteredFlashcards.length ? displayIndex + 1 : 0} of {filteredFlashcards.length}
+					Card {visibleFlashcards.length ? displayIndex + 1 : 0} of {visibleFlashcards.length}
 				</span>
 				<button className={styles.nav_button} onClick={goNext} disabled={!canGoNext} type="button">
 					<span className="hidden md:flex">Next</span>

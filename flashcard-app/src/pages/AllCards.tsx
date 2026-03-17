@@ -9,6 +9,7 @@ import { Checkbox } from "../components/ui/Checkbox";
 import { shuffleIcon } from "../assets/images";
 import { CategoryDropdown } from "../components/ui/CategoryDropdown";
 import Flashcard from "../components/Flashcard";
+import { handleFilterByCategory, handleFilterByMastered } from "../utils/filter_cards_utils";
 
 export default function AllCards() {
 	const { user } = useAuth();
@@ -19,15 +20,9 @@ export default function AllCards() {
 	useUserFlashcards({ userId: user?.uid, setFlashcards });
 
 	// Filtered by category
-	const filteredByCategory =
-		selectedCategories.length === 0
-			? flashcards
-			: flashcards.filter((card) => card.category && selectedCategories.includes(card.category));
-
+	const cards_filtered_by_category = handleFilterByCategory(selectedCategories, flashcards);
 	// Hide mastered cards
-	const visibleFlashcards = hideMasteredCards
-		? filteredByCategory.filter((card) => card.correctStreak < 5)
-		: filteredByCategory;
+	const visibleFlashcards = handleFilterByMastered(hideMasteredCards, cards_filtered_by_category);
 
 	const handleHideMasteredCards = () => {
 		setHideMasteredCards((check) => !check);
