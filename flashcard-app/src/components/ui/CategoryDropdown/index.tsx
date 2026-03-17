@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import { CountCategories } from "../../../utils/CountCategories";
+import { CountCategories } from "../../../utils/counter_utils";
 import { useUserFlashcards } from "../../../hooks/useUserFlashcards";
 import { useAuth } from "../../../hooks/useAuth";
 import { useOnClickOutside } from "../../../hooks/useOnClickOutside";

@@ -4,7 +4,7 @@ import styles from "./index.module.css";
 import ProgressBar from "../../ProgressBar";
 import type { UserFlashcard } from "../../../types/UserFlashcard";
 
-export const ActiveCard = ({ id, question, answer, category, knownCount }: UserFlashcard) => {
+export const ActiveCard = ({ id, question, answer, category, correctStreak }: UserFlashcard) => {
 	return (
 		<div className={styles.flashcard_content} key={id}>
 			<div className={styles.flashcard_bg} />
@@ -18,7 +18,7 @@ export const ActiveCard = ({ id, question, answer, category, knownCount }: UserF
 			<img className="size-6 absolute right-7.5 top-10" src={blueStar} alt="blue star" />
 			<img className="size-8 absolute left-7 bottom-13" src={yellowStar} alt="yellow star" />
 			{/* Progress Bar */}
-			<ProgressBar knownCount={knownCount} />
+			<ProgressBar correctStreak={correctStreak} />
 		</div>
 	);
 };

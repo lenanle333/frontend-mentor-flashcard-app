@@ -3,6 +3,6 @@ export interface UserFlashcard {
 	question: string;
 	answer: string;
 	category: string;
-	knownCount: number;
+	correctStreak: number;
 	userId: string;
 }

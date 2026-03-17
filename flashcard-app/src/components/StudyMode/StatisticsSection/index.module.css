@@ -46,11 +46,11 @@
 	flex: 1 0 0;
 	align-self: stretch;
 }
-.info_container span:first-child {
+.info_container h2 {
 	@apply text-preset-4-md;
 }
-.info_container span:last-child {
-	@apply text-preset-1;
+.info_container span {
+	@apply text-preset-1!;
 }
 .icon_container {
 	display: flex;

@@ -9,7 +9,7 @@ import type { UserFlashcard } from "../../types/UserFlashcard";
 import EditCardModal from "../EditCardModal";
 import DeleteCardModal from "../DeleteCardModal";
 
-export default function Flashcard({ id, question, answer, category, knownCount }: UserFlashcard) {
+export default function Flashcard({ id, question, answer, category, correctStreak }: UserFlashcard) {
 	const dropdownRef = useRef<HTMLDivElement>(null);
 
 	const [dropdownIsOpen, setDropdownIsOpen] = useState(false);
@@ -32,22 +32,22 @@ export default function Flashcard({ id, question, answer, category, knownCount }
 
 	return (
 		<div className={`card-style ${styles.container}`} key={id}>
-			<div className={styles.question}>{question}</div>
-			<div className={styles.answerBox}>
-				<span>Answer:</span>
-				<div className={styles.answer}>
-					{answer}
-					{dropdownIsOpen ? (
-						<CardDropdown ref={dropdownRef} onEditClick={handleEditClick} onDeleteClick={handleDeleteClick} />
-					) : null}
-				</div>
+			<div className={styles.question}>
+				<h1 className="text-preset-3">{question}</h1>
+			</div>
+			<div className={styles.answer}>
+				<h2 className="opacity-60! text-preset-5">Answer:</h2>
+				<span className="text-preset-5">{answer}</span>
+				{dropdownIsOpen ? (
+					<CardDropdown ref={dropdownRef} onEditClick={handleEditClick} onDeleteClick={handleDeleteClick} />
+				) : null}
 			</div>
 			<div className={styles.footer}>
 				<div className={styles.tagBox}>
 					<Tag name={category} />
 				</div>
 				<div className={styles.progressBarBox}>
-					<ProgressBar knownCount={knownCount} />
+					<ProgressBar correctStreak={correctStreak} />
 				</div>
 				<div className={styles.dropdownBox}>
 					<button className={styles.dropdownBtn} onClick={() => setDropdownIsOpen(!dropdownIsOpen)}>
@@ -55,6 +55,7 @@ export default function Flashcard({ id, question, answer, category, knownCount }
 					</button>
 				</div>
 			</div>
+
 			{editModalOpen ? (
 				<EditCardModal
 					id={id}

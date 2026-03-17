@@ -41,5 +41,5 @@
 	box-shadow: 1px 1px 0 0 var(--color-neutral-900);
 }
 .mastered_container span {
-	@apply text-preset-6 text-neutral-900;
+	@apply text-preset-6;
 }

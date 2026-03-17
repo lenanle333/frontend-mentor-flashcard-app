@@ -21,7 +21,7 @@ export default function FlashcardForm() {
 				question: question,
 				answer: answer,
 				category: CapitalizeSentence(category),
-				knownCount: 0,
+				correctStreak: 0,
 				userId: user.uid,
 			};
 			await addFlashcard(newFlashcard);
