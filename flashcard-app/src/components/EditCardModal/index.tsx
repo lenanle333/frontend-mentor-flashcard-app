@@ -26,15 +26,19 @@ export default function EditCardModal({ setIsVisible, id, question, answer, cate
 
 	const handleUpdateFlashcard = async (e: React.SubmitEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		if (question.trim() && answer.trim() && category.trim()) {
-			const newFlashcard: Partial<UserFlashcard> = {
-				question: draftQuestion,
-				answer: draftAnswer,
-				category: CapitalizeSentence(draftCategory),
-			};
-			await updateFlashcard(id, newFlashcard);
-			handleCloseModal();
+		try {
+			if (draftQuestion.trim() && draftAnswer.trim() && draftCategory.trim()) {
+				const newFlashcard: Partial<UserFlashcard> = {
+					question: draftQuestion,
+					answer: draftAnswer,
+					category: CapitalizeSentence(draftCategory),
+				};
+				await updateFlashcard(id, newFlashcard);
+			}
+		} catch (err) {
+			console.log(err);
 		}
+		handleCloseModal();
 	};
 
 	return (

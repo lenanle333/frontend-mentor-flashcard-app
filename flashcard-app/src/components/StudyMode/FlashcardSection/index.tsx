@@ -9,6 +9,7 @@ import { useUserFlashcards } from "../../../hooks/useUserFlashcards";
 import type { UserFlashcard } from "../../../types/UserFlashcard";
 import styles from "./index.module.css";
 import { handleFilterByCategory, handleFilterByMastered } from "../../../utils/filter_cards_utils";
+import { updateFlashcard } from "../../../services/flashcardService";
 
 export const FlashcardSection = () => {
 	const { user } = useAuth();
@@ -18,7 +19,7 @@ export const FlashcardSection = () => {
 	const [currentIndex, setCurrentIndex] = useState(0);
 
 	useUserFlashcards({ userId: user?.uid, setFlashcards });
-
+	// Hide cards not selected
 	const cards_filtered_by_category = handleFilterByCategory(selectedCategories, flashcards);
 	// Hide mastered cards
 	const visibleFlashcards = handleFilterByMastered(hideMasteredCards, cards_filtered_by_category);
@@ -26,6 +27,7 @@ export const FlashcardSection = () => {
 	const handleHideMasteredCards = () => {
 		setHideMasteredCards((check) => !check);
 	};
+
 	const displayIndex = visibleFlashcards.length ? Math.min(currentIndex, Math.max(0, visibleFlashcards.length - 1)) : 0;
 	const currentCard = visibleFlashcards[displayIndex];
 	const canGoPrev = displayIndex > 0;
@@ -34,13 +36,45 @@ export const FlashcardSection = () => {
 	const goPrev = () => setCurrentIndex((i) => Math.max(0, i - 1));
 	const goNext = () => setCurrentIndex((i) => Math.min(visibleFlashcards.length - 1, i + 1));
 
+	// Update progress
+	const handleClickCardKnown = async () => {
+		try {
+			if (currentCard.correctStreak < 5) {
+				const newStreak = currentCard.correctStreak + 1;
+				const updatedFlashcard: Partial<UserFlashcard> = {
+					correctStreak: newStreak,
+				};
+				await updateFlashcard(currentCard.id, updatedFlashcard);
+				goNext();
+			} else return;
+		} catch (error) {
+			console.log(error);
+		}
+	};
+	// Reset Flashcard progress
+	const handleClickReset = async () => {
+		try {
+			if (currentCard.correctStreak === 0) {
+				return;
+			} else {
+				const updatedFlashcard: Partial<UserFlashcard> = {
+					correctStreak: 0,
+				};
+				await updateFlashcard(currentCard.id, updatedFlashcard);
+			}
+		} catch (error) {
+			console.log(error);
+		}
+	};
 	return (
 		<div className={styles.container}>
 			{/* Header */}
 			<div className={styles.header}>
 				<div className={styles.flashcard_controls}>
 					<div className={styles.filters}>
+						{/* Category selection */}
 						<CategoryDropdown selectedCategories={selectedCategories} onSelectionChange={setSelectedCategories} />
+						{/* Hide mastered cards */}
 						<Checkbox label="Hide Mastered" checked={hideMasteredCards} onChange={handleHideMasteredCards} />
 					</div>
 					{/* TODO: ADD SHUFFLE FUNCTIONALITY */}
@@ -61,10 +95,12 @@ export const FlashcardSection = () => {
 					)}
 				</div>
 				<div className={styles.actions}>
-					<Button variant="primary" className="w-full md:w-auto">
+					{/* I know this  */}
+					<Button variant="primary" className="w-full md:w-auto" onClick={handleClickCardKnown}>
 						<img src={circleCheckIcon} alt="I know this" />I Know This
 					</Button>
-					<Button variant="secondary" className="w-full md:w-auto">
+					{/* Reset progress  */}
+					<Button variant="secondary" className="w-full md:w-auto" onClick={handleClickReset}>
 						<img src={resetIcon} alt="reset progress" />
 						Reset Progress
 					</Button>
