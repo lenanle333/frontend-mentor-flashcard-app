@@ -1,23 +1,44 @@
+import type { UserFlashcard } from "../types/UserFlashcard";
+import React, { useState } from "react";
+import { useAuth } from "../hooks/useAuth";
+import { useUserFlashcards } from "../hooks/useUserFlashcards";
 import { NavBar } from "../components/NavBar";
-import NewCard from "../components/NewCard";
-import Button from "../components/Button";
-import { Checkbox } from "../components/Checkbox";
-import shuffleIcon from "../assets/images/icon-shuffle.svg";
-import { CategoryDropdown } from "../components/CategoryDropdown";
+import FlashcardForm from "../components/forms/FlashcardForm";
+import Button from "../components/ui/Button";
+import { Checkbox } from "../components/ui/Checkbox";
+import { shuffleIcon } from "../assets/images";
+import { CategoryDropdown } from "../components/ui/CategoryDropdown";
 import Flashcard from "../components/Flashcard";
+import { handleFilterByCategory, handleFilterByMastered } from "../utils/filter_cards_utils";
+
 export default function AllCards() {
+	const { user } = useAuth();
+	const [flashcards, setFlashcards] = useState<UserFlashcard[]>([]);
+	const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+	const [hideMasteredCards, setHideMasteredCards] = useState(false);
+
+	useUserFlashcards({ userId: user?.uid, setFlashcards });
+
+	// Filtered by category
+	const cards_filtered_by_category = handleFilterByCategory(selectedCategories, flashcards);
+	// Hide mastered cards
+	const visibleFlashcards = handleFilterByMastered(hideMasteredCards, cards_filtered_by_category);
+
+	const handleHideMasteredCards = () => {
+		setHideMasteredCards((check) => !check);
+	};
 	return (
-		<div className="screen-padding">
+		<div className="screen-padding relative">
 			<NavBar />
 			<div className="flex flex-col self-stretch gap-300 lg:gap-400 ">
-				<NewCard />
+				<FlashcardForm />
 				{/* Flashcard Controls */}
 				<div className="flex pt-200 justify-between items-start self-stretch md:items-center">
-					{/* Cateogry Filter */}
 					<div className="flex flex-col justify-center items-start gap-125 flex-[1_0_0] md:flex-row md:gap-250 md:items-center md:justify-start">
-						<CategoryDropdown />
+						{/* Cateogry Filter */}
+						<CategoryDropdown selectedCategories={selectedCategories} onSelectionChange={setSelectedCategories} />
 						{/* Hide Mastered Checkbox */}
-						<Checkbox label="Hide Mastered" />
+						<Checkbox label="Hide Mastered" checked={hideMasteredCards} onChange={handleHideMasteredCards} />
 					</div>
 					<Button variant="border">
 						<img src={shuffleIcon} alt="shuffle icon" />
@@ -25,10 +46,19 @@ export default function AllCards() {
 					</Button>
 				</div>
 				{/* Flashcards Container */}
-				<div className="flex items-start content-start gap-250 self-stretch flex-wrap">
-					<Flashcard />
-					<Flashcard />
-					<Flashcard />
+				<div className="flex items-start content-start gap-200 self-stretch flex-wrap lg:gap-300 ">
+					{visibleFlashcards.map((flashcards) => (
+						<React.Fragment key={flashcards.id}>
+							<Flashcard
+								id={flashcards.id}
+								question={flashcards.question}
+								answer={flashcards.answer}
+								category={flashcards.category}
+								correctStreak={flashcards.correctStreak}
+								userId={flashcards.userId}
+							/>
+						</React.Fragment>
+					))}
 				</div>
 			</div>
 		</div>

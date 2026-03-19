@@ -90,3 +90,14 @@
 .nav_button:hover {
 	background-color: var(--color-neutral-100);
 }
+.nav_button:disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+}
+.nav_button:disabled:hover {
+	background-color: var(--color-neutral-0);
+}
+.empty {
+	color: var(--color-neutral-600);
+	@apply text-preset-5;
+}

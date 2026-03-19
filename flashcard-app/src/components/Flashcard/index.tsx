@@ -1,42 +1,74 @@
 import { useRef, useState } from "react";
-import { useOnClickOutside } from "../../utils/useOnClickOutside";
+import { useOnClickOutside } from "../../hooks/useOnClickOutside";
 import styles from "./index.module.css";
 import Tag from "../Tag";
 import ProgressBar from "../ProgressBar";
-import menuIcon from "../../assets/images/icon-menu.svg";
+import { menuIcon } from "../../assets/images";
 import { CardDropdown } from "../CardDropdown";
-export default function Flashcard() {
-	const menuRef = useRef<HTMLDivElement>(null);
-	const [menuIsVisible, setMenuIsVisible] = useState(false);
+import type { UserFlashcard } from "../../types/UserFlashcard";
+import EditCardModal from "../EditCardModal";
+import DeleteCardModal from "../DeleteCardModal";
+
+export default function Flashcard({ id, question, answer, category, correctStreak }: UserFlashcard) {
+	const dropdownRef = useRef<HTMLDivElement>(null);
+
+	const [dropdownIsOpen, setDropdownIsOpen] = useState(false);
+	const [editModalOpen, setEditModalOpen] = useState(false);
+	const [deleteModalOpen, setDeleteModalOpen] = useState(false);
 
 	const handleClicksOutside = () => {
-		setMenuIsVisible(false);
+		setDropdownIsOpen(false);
+	};
+	useOnClickOutside(dropdownRef, handleClicksOutside);
+
+	const handleEditClick = () => {
+		setEditModalOpen(true);
+		setDropdownIsOpen(false);
+	};
+	const handleDeleteClick = () => {
+		setDeleteModalOpen(true);
+		setDropdownIsOpen(false);
 	};
 
-	useOnClickOutside(menuRef, handleClicksOutside);
 	return (
-		<div className={`card-style ${styles.container} bg-amber-200`}>
-			<div className={styles.question}>What does HTML stand for?</div>
-			<div className={styles.answerBox}>
-				<span>Answer:</span>
-				<div className={styles.answer}>
-					HyperText Markup Language
-					{menuIsVisible ? <CardDropdown ref={menuRef} /> : null}
-				</div>
+		<div className={`card-style ${styles.container}`} key={id}>
+			<div className={styles.question}>
+				<h1 className="text-preset-3">{question}</h1>
+			</div>
+			<div className={styles.answer}>
+				<h2 className="opacity-60! text-preset-5">Answer:</h2>
+				<span className="text-preset-5">{answer}</span>
+				{dropdownIsOpen ? (
+					<CardDropdown ref={dropdownRef} onEditClick={handleEditClick} onDeleteClick={handleDeleteClick} />
+				) : null}
 			</div>
 			<div className={styles.footer}>
 				<div className={styles.tagBox}>
-					<Tag name="Web Development" />
+					<Tag name={category} />
 				</div>
 				<div className={styles.progressBarBox}>
-					<ProgressBar />
+					<ProgressBar correctStreak={correctStreak} />
 				</div>
-				<div className={styles.menuBox}>
-					<button className={styles.menuBtn} onClick={() => setMenuIsVisible(!menuIsVisible)}>
+				<div className={styles.dropdownBox}>
+					<button className={styles.dropdownBtn} onClick={() => setDropdownIsOpen(!dropdownIsOpen)}>
 						<img src={menuIcon} alt="menu icon" />
 					</button>
 				</div>
 			</div>
+
+			{editModalOpen ? (
+				<EditCardModal
+					id={id}
+					question={question}
+					answer={answer}
+					category={category}
+					isVisible={editModalOpen}
+					setIsVisible={setEditModalOpen}
+				/>
+			) : null}
+			{deleteModalOpen ? (
+				<DeleteCardModal id={id} isVisible={deleteModalOpen} setIsVisible={setDeleteModalOpen} />
+			) : null}
 		</div>
 	);
 }

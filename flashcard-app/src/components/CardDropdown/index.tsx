@@ -1,44 +1,27 @@
-import { forwardRef, useState } from "react";
+import { forwardRef } from "react";
 import style from "./index.module.css";
-import editIcon from "../../assets/images/icon-edit.svg";
-import deleteIcon from "../../assets/images/icon-delete.svg";
-import EditCardModal from "../EditCardModal";
-import DeleteCardModal from "../DeleteCardModal";
-export const CardDropdown = forwardRef<HTMLDivElement>(
-	function CardDropdown(_, ref) {
-		const [editModalOpen, setEditModalOpen] = useState(false);
-		const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+import { editIcon, deleteIcon } from "../../assets/images";
 
-		return (
-			<div className={style.container} ref={ref}>
-				<div
-					className={style.item}
-					onClick={() => setEditModalOpen(!editModalOpen)}
-				>
-					<img src={editIcon} alt="edit" />
-					<span>Edit</span>
-				</div>
-				<div className="h-[0.0625rem] self-stretch bg-neutral-900" />
-				<div
-					className={style.item}
-					onClick={() => setDeleteModalOpen(!deleteModalOpen)}
-				>
-					<img src={deleteIcon} alt="delete" />
-					<span>Delete</span>
-				</div>
-				{editModalOpen ? (
-					<EditCardModal
-						isVisible={editModalOpen}
-						setIsVisible={setEditModalOpen}
-					/>
-				) : null}
-				{deleteModalOpen ? (
-					<DeleteCardModal
-						isVisible={deleteModalOpen}
-						setIsVisible={setDeleteModalOpen}
-					/>
-				) : null}
+interface CardDropdownProps {
+	onEditClick?: () => void;
+	onDeleteClick?: () => void;
+}
+
+export const CardDropdown = forwardRef<HTMLDivElement, CardDropdownProps>(function CardDropdown(
+	{ onEditClick, onDeleteClick },
+	ref,
+) {
+	return (
+		<div className={style.container} ref={ref}>
+			<div className={style.item} onClick={onEditClick}>
+				<img src={editIcon} alt="edit" />
+				<span>Edit</span>
 			</div>
-		);
-	},
-);
+			<div className="h-[0.0625rem] self-stretch bg-neutral-900" />
+			<div className={style.item} onClick={onDeleteClick}>
+				<img src={deleteIcon} alt="delete" />
+				<span>Delete</span>
+			</div>
+		</div>
+	);
+});

@@ -2,24 +2,27 @@
 
 .container {
 	display: flex;
-	width: 21.25rem;
-	height: 14.875rem;
+	width: min(21.3rem, 24.8rem);
+	min-height: 14.6rem;
 	flex-direction: column;
 	align-items: flex-start;
-	@apply lg:w-[24.8125rem];
+	@apply lg:w-[24.8rem];
 }
 
 .question {
 	display: flex;
 	padding: var(--spacing-200);
-	align-items: center;
+	align-items: baseline;
 	gap: var(--spacing-125);
 	align-self: stretch;
 	border-bottom: 1px solid var(--color-neutral-900);
-	@apply text-preset-3 text-neutral-900;
+	min-height: 3.5rem;
+	max-height: 6.5rem;
+	overflow: auto;
+	@apply lg:max-h-[5rem];
 }
 
-.answerBox {
+.answer {
 	position: relative;
 	display: flex;
 	padding: var(--spacing-200);
@@ -28,20 +31,19 @@
 	gap: var(--spacing-75);
 	flex: 1 0 0;
 	align-self: stretch;
+	min-height: 5rem;
+	overflow: auto;
 	border-bottom: 1px solid var(--color-neutral-900);
-	@apply text-preset-5 text-neutral-900;
 }
-.answerBox span {
-	opacity: 0.6;
-}
+
 .footer {
-	display: flex;
-	height: 3.5rem;
+	display: grid;
+	min-height: 3.5rem;
 	padding: 0 var(--spacing-200);
-	align-items: center;
 	gap: var(--spacing-100);
-	flex-shrink: 0;
+	grid-template-columns: auto 2fr 1.5rem;
 	align-self: stretch;
+	grid-auto-flow: column;
 }
 .tagBox {
 	display: flex;
@@ -62,13 +64,13 @@
 	align-self: stretch;
 	border-right: 1px solid var(--color-neutral-900);
 }
-.menuBox {
+.dropdownBox {
 	display: flex;
 	justify-content: flex-end;
 	align-items: center;
 	align-self: stretch;
 }
-.menuBtn {
+.dropdownBtn {
 	display: flex;
 	width: 1.5rem;
 	height: 1.5rem;
@@ -78,10 +80,10 @@
 	transition: 100ms;
 	border-radius: var(--radius-4);
 }
-.menuBtn img {
+.dropdownBtn img {
 	flex-shrink: 0;
 }
-.menuBtn:hover {
+.dropdownBtn:hover {
 	border: 1px solid var(--color-neutral-900);
 	background: var(--color-neutral-0);
 	box-shadow: 2px 2px 0 0 var(--color-neutral-900);
