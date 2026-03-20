@@ -54,8 +54,8 @@ export default function SignUp() {
 				<form onSubmit={(e) => handleSubmit(e, onSubmit)} className="flex flex-col items-start gap-200 self-stretch">
 					<TextInput
 						label="Display Name"
-						id="display-name"
-						name="users-display-name"
+						id="displayName"
+						name="displayName"
 						value={values.displayName}
 						onChange={handleChange}
 						placeholder="e.g., cooldog123"
@@ -65,7 +65,7 @@ export default function SignUp() {
 						label="Email"
 						type="email"
 						id="email"
-						name="users-email"
+						name="email"
 						value={values.email}
 						onChange={handleChange}
 						placeholder="e.g., cooldog123@flashcards.com"
@@ -75,7 +75,7 @@ export default function SignUp() {
 						label="Password"
 						type="password"
 						id="password"
-						name="users-password"
+						name="password"
 						value={values.password}
 						onChange={handleChange}
 						placeholder="e.g., *************"
