@@ -5,6 +5,7 @@
 	align-items: flex-start;
 	gap: var(--spacing-100);
 	align-self: stretch;
+	width: 100%;
 }
 .label {
 	@apply text-preset-4-md text-neutral-900;

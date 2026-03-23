@@ -22,6 +22,9 @@ import flashcardBg from "./pattern-flashcard-bg.svg";
 import blueStar from "./pattern-star-blue.svg";
 import pinkStar from "./pattern-star-pink.svg";
 import yellowStar from "./pattern-star-yellow.svg";
+import eyeIcon from "./icon-eye.svg";
+import eyeSlashIcon from "./icon-eye-slash.svg";
+import googleSignup from "./google-signup.svg";
 
 export {
 	checkIcon,
@@ -48,4 +51,7 @@ export {
 	blueStar,
 	pinkStar,
 	yellowStar,
+	eyeIcon,
+	eyeSlashIcon,
+	googleSignup,
 };
