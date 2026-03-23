@@ -35,7 +35,6 @@ const validate = (values: SignUpForm) => {
 };
 export default function SignUp() {
 	const { values, errors, isSubmitting, handleChange, handleSubmit } = useForm<SignUpForm>(initialState, validate);
-
 	const onSubmit = async (values: SignUpForm) => {
 		try {
 			const userCredential = await createUserWithEmailAndPassword(auth, values.email, values.password);
@@ -54,6 +53,7 @@ export default function SignUp() {
 				<form onSubmit={(e) => handleSubmit(e, onSubmit)} className="flex flex-col items-start gap-200 self-stretch">
 					<TextInput
 						label="Display Name"
+						type="text"
 						id="displayName"
 						name="displayName"
 						value={values.displayName}
@@ -71,15 +71,17 @@ export default function SignUp() {
 						placeholder="e.g., cooldog123@flashcards.com"
 					/>
 					{errors.email && <p>{errors.email}</p>}
-					<TextInput
-						label="Password"
-						type="password"
-						id="password"
-						name="password"
-						value={values.password}
-						onChange={handleChange}
-						placeholder="e.g., *************"
-					/>
+					<div className="w-full flex flex-row items-center">
+						<TextInput
+							label="Password"
+							type="password"
+							id="password"
+							name="password"
+							value={values.password}
+							onChange={handleChange}
+							placeholder="e.g., *************"
+						/>
+					</div>
 					{errors.password && <p>{errors.password}</p>}
 					<Button variant="primary" type="submit" disabled={isSubmitting}>
 						{isSubmitting ? "Creating account..." : "Create account"}
